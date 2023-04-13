@@ -4,7 +4,7 @@
 
 
 ## UI Logic
-- [ ] set Routers
+- [ ] set routers
 - [ ] make Common Page
   - [ ] make header
     - [ ] navigate to Auth page when logo btn is clicked
