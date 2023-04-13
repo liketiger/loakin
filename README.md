@@ -1,46 +1,35 @@
-# Getting Started with Create React App
+# 👉 Feature Implementation list
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Domain Logic
 
-## Available Scripts
 
-In the project directory, you can run:
+## UI Logic
+- [ ] make Common Page
+  - [ ] make header
+    - [ ] navigate to Auth page when logo btn is clicked
+    - [ ] navigate to Calendar page when schedule btn is clicked
+    - [ ] navigate to Crew Page when crew btn is clicked
+- [ ] make Auth page
+  - [ ] take pwd from user and render accordingly
+- [ ] make Calendar page
+  - [ ] change color when hovered on each date
+  - [ ] show raid brief detail (name, time)
+  - [ ] make Raid detail page
+    - [ ] show raid summarize
+    - [ ] make modal that pops when create btn was pressed
+    - [ ] add to summarize when created
+    - [ ] show crew list with characters attending to a raid when summarized raid is clicked
+    - [ ] navigate to character deatils of Crew page when each crew is clicked 
+- [ ] make Crew page
+  - [ ] show crew list and their characters
+  - [ ] navigate to character details when crew is clicked
+    - [ ] show detail info about selected character
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Refactor
+- [ ] optimize
+- [ ] extract with fnc
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## ETC
+- [ ] set Backend with node.js and mongoDB
+- [ ] deploy website
