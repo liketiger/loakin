@@ -1,19 +1,19 @@
 # 👉 Feature Implementation list
 
 ## Domain Logic
+- [ ] fetch data from Lostark API
+- [ ] set Redux Typscript settings
 
 
 ## UI Logic
-- [ ] set routers
-- [ ] make Common Page
-  - [ ] make header
-    - [ ] navigate to Auth page when logo btn is clicked
-    - [ ] navigate to Calendar page when schedule btn is clicked
-    - [ ] navigate to Crew Page when crew btn is clicked
-- [ ] make Auth page
-  - [ ] take pwd from user and render accordingly
-- [ ] make Calendar page
-  - [ ] change color when hovered on each date
+- [x] set routers
+- [x] make Common Page
+  - [x] make header
+    - [x] navigate to Auth page when logo btn is clicked
+    - [x] navigate to Calendar page when schedule btn is clicked
+    - [x] navigate to Crew Page when crew btn is clicked
+- [x] make Calendar page
+  - [x] change color when hovered on each date
   - [ ] show raid brief detail (name, time)
   - [ ] make Raid detail page
     - [ ] show raid summarize
@@ -21,9 +21,8 @@
     - [ ] add to summarize when created
     - [ ] show crew list with characters attending to a raid when summarized raid is clicked
     - [ ] navigate to character deatils of Crew page when each crew is clicked 
-- [ ] make Crew page
-  - [ ] show crew list and their characters
-  - [ ] navigate to character details when crew is clicked
+- [x] make Crew page
+  - [x] show crew list and their characters
     - [ ] show detail info about selected character
 
 
