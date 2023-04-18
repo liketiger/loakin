@@ -6,7 +6,6 @@ import { useAppDispatch, useAppSelector } from "./RTKhooks";
 import requestHttp from "./request-Http";
 
 export const useCrewList = async () => {
-  let crewList: CharacterDetail[] = [];
   const dispatch = useAppDispatch();
   const fetchCrewList = async (character: string) => {
     const res = await requestHttp({
@@ -23,13 +22,15 @@ export const useCrewList = async () => {
 
   const crewState = useAppSelector(state => state.crew);
   useEffect(() => {
-    crewState.forEach(async character => {
-      crewList = await fetchCrewList(character.main);
-      dispatch(crewActions.fetchCrew({ main: character.main, list: crewList }));
-    });
-  }, [])
-
-  console.log(crewState)
-  // type CharacterDetail = Modify<>
-  // mainCharacters.characterList
+    Promise.all(crewState.main.map(item => fetchCrewList(item)))
+      .then(data => {
+        data.forEach(characters => {
+          characters.forEach((character: CharacterDetail) => {
+            character.ItemAvgLevel = Math.trunc(+(character.ItemAvgLevel as string).replace(',', ''));
+          });
+          characters.sort((a: CharacterDetail, b: CharacterDetail) => (b.ItemAvgLevel as number) - (a.ItemAvgLevel as number));
+        });
+        dispatch(crewActions.fetchCrew(data));
+      });
+  }, []);
 };

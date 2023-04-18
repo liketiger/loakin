@@ -1,25 +1,26 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { CharacterDetail, MemberType } from '../../types/fetch-types';
+import { CharacterDetail } from '../../types/fetch-types';
 import CrewCharacterDetail from './CrewCharacterDetail';
 
 type CrewItemTypes = {
-  detail: MemberType
+  name: string,
+  characterList: CharacterDetail[],
 };
 
 const CrewItem = (props: CrewItemTypes) => {
-  const { detail } = props;
+  const { name, characterList } = props;
   return <ItemWrapper>
-      <CrewName>{detail.name}</CrewName>
+      <CrewName>{name}</CrewName>
       <CrewCharacter>
-        {detail.characterList.map((character, index) => <CrewCharacterDetail key={index} info={character} />)}
+        {characterList?.map((character, index) => <CrewCharacterDetail key={index} index={index} info={character} />)}
       </CrewCharacter>
   </ItemWrapper>
 };
 
 const ItemWrapper = styled.article`
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   display: flex;
@@ -28,7 +29,7 @@ const ItemWrapper = styled.article`
 
 const CrewName = styled.div`
   border-radius: 10px 10px 0 0;
-  flex-basis: 15%;
+  flex-basis: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +41,15 @@ const CrewName = styled.div`
 
 const CrewCharacter = styled.div`
   border-radius: 0 0 10px 10px;
+  padding: 10px;
   flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-template-rows: repeat(auto-fill, 35px);
+  justify-items: start;
+  align-items: center;
+  align-content: center;
+  position: relative;
 `;
 
 export default CrewItem;

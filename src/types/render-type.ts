@@ -13,12 +13,9 @@ type CalendarDetail = {
   raidList: RaidDetail[], 
 };
 
-type PayloadType = {
-  main: string,
-  list: CharacterDetail[]
-}
+type PayloadType = CharacterDetail[][];
 
 type InitialCalendarState = CalendarDetail[];
-type InitialCrewState = MemberType[];
+type InitialCrewState = MemberType;
 
 export { InitialCalendarState, InitialCrewState, PayloadType };

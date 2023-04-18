@@ -1,4 +1,4 @@
-import { RequestData, CharacterDetail } from "../types/fetch-types";
+import { RequestData } from "../types/fetch-types";
 
 const requestHttp = async (req: RequestData) => {
   const res = await fetch(req.url, {
@@ -8,7 +8,6 @@ const requestHttp = async (req: RequestData) => {
   });
 
   const data = await res.json();
-  console.log(data, 'http');
   return data;
 };
 

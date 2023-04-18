@@ -3,7 +3,7 @@ import { calendarReducer } from './calendar';
 import { crewReducer } from './crew';
 
 const store = configureStore({
-  reducer: { calendar: calendarReducer, crew: crewReducer }
+  reducer: { calendar: calendarReducer, crew: crewReducer, modal: modalReducer }
 });
 
 type RootState = ReturnType<typeof store.getState>;
