@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { InitialCalendarState } from "../types/render-type";
+import { initialCalendarState } from "./data";
 
-const initialState: InitialCalendarState = [];
+const initialState = initialCalendarState;
 
 const calendarSlice = createSlice({
   name: 'calendar',

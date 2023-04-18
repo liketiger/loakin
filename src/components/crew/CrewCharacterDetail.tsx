@@ -1,6 +1,8 @@
 import React from 'react'
 import styled, { css } from 'styled-components';
 import { CharacterDetail } from '../../types/fetch-types';
+import { useAppDispatch } from '../../utils/RTKhooks';
+import { modalActions } from '../../store/modal';
 
 type CrewCharacterDetailProps = {
   info: CharacterDetail,
@@ -14,8 +16,12 @@ type TextPropType = {
 
 const CrewCharacterDetail = (props: CrewCharacterDetailProps) => {
   const { ServerName, CharacterName, CharacterLevel, CharacterClassName, ItemAvgLevel } = props.info;
+  const dispatch = useAppDispatch();
+
+  const OpenModalHandler = () => dispatch(modalActions.toggleModal());
+
   return <>
-    <CharacterText type='level' index={props.index} onClick={() => console.log('hi')}>{CharacterLevel}</CharacterText>
+    <CharacterText type='level' index={props.index} onClick={OpenModalHandler}>{CharacterLevel}</CharacterText>
     <CharacterText type='name'>{CharacterName}</CharacterText>
     <CharacterText type='item'>{ItemAvgLevel}</CharacterText>
     <CharacterText type='class'>{CharacterClassName}</CharacterText>

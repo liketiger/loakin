@@ -7,8 +7,10 @@ import Crew from './pages/Crew';
 import Raid from './pages/Raid';
 import { useCrewList } from './utils/customHooks';
 import Modal from './components/common/Modal';
+import { useAppSelector } from './utils/RTKhooks';
 
 const App = () => {
+  const modalState = useAppSelector(state => state.modal.isOpen);
   useCrewList();
 
   return (

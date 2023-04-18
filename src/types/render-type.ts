@@ -13,9 +13,14 @@ type CalendarDetail = {
   raidList: RaidDetail[], 
 };
 
-type PayloadType = CharacterDetail[][];
+type ModalType = {
+  isOpen: boolean
+}
+
+type CrewPayloadType = CharacterDetail[][];
 
 type InitialCalendarState = CalendarDetail[];
 type InitialCrewState = MemberType;
+type InitialModalState = ModalType;
 
-export { InitialCalendarState, InitialCrewState, PayloadType };
+export { InitialCalendarState, InitialCrewState, CrewPayloadType, InitialModalState };

@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { PayloadType } from '../types/render-type';
+import { CrewPayloadType } from '../types/render-type';
 import { initialCrewState } from './data';
 
 const initialState = initialCrewState;
@@ -8,7 +8,7 @@ const crewSlice = createSlice({
   name: 'crew',
   initialState,
   reducers: {
-    fetchCrew(state, action: PayloadAction<PayloadType>) {
+    fetchCrew(state, action: PayloadAction<CrewPayloadType>) {
       state.characterList = action.payload;
     }
   }

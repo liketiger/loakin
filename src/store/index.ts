@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { calendarReducer } from './calendar';
 import { crewReducer } from './crew';
+import { modalReducer } from './modal';
 
 const store = configureStore({
   reducer: { calendar: calendarReducer, crew: crewReducer, modal: modalReducer }
