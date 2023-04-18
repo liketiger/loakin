@@ -6,4 +6,7 @@ const store = configureStore({
   reducer: { calendar: calendarReducer, crew: crewReducer }
 });
 
-export default store;
+type RootState = ReturnType<typeof store.getState>;
+type AppDispatch = typeof store.dispatch;
+
+export { store, RootState, AppDispatch };

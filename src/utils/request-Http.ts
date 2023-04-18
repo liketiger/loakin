@@ -1,6 +1,6 @@
 import { RequestData, CharacterDetail } from "../types/fetch-types";
 
-const requestHttp = async (req: RequestData, getData: (list: CharacterDetail[]) => void) => {
+const requestHttp = async (req: RequestData) => {
   const res = await fetch(req.url, {
     method: req.method,
     headers: req.headers,
@@ -8,7 +8,8 @@ const requestHttp = async (req: RequestData, getData: (list: CharacterDetail[]) 
   });
 
   const data = await res.json();
-  getData(data);
+  console.log(data, 'http');
+  return data;
 };
 
 export default requestHttp;

@@ -11,7 +11,7 @@ const CrewCharacterDetail = (props: CrewCharacterDetailProps) => {
   return <CaracterTextWrapper>
     <CharacterText>{CharacterLevel}</CharacterText>
     <CharacterText type='name'>{CharacterName}</CharacterText>
-    <CharacterText>{Math.trunc(+ItemAvgLevel.replace(',', ''))}</CharacterText>
+    <CharacterText>{ItemAvgLevel}</CharacterText>
     <CharacterText type='class'>{CharacterClassName}</CharacterText>
     <CharacterText>{ServerName}</CharacterText>
   </CaracterTextWrapper>

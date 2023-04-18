@@ -1,16 +1,17 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React from 'react';
 import CrewItem from './CrewItem';
-import { MemberType } from '../../types/fetch-types';
-import { InitialCrewState } from '../../types/render-type';
+import { CharacterDetail, MemberType } from '../../types/fetch-types';
+import { useAppSelector } from '../../utils/RTKhooks';
 
 const CrewList = () => {
-  const members = useSelector((state) => state.crew.characterList);
+  const members = useAppSelector((state) => state.crew);
   return (
     <>
-    {members.map((item: MemberType, index) => <CrewItem key={index} detail={item} />)}
+      {members.map((item: MemberType, index) => (
+        <CrewItem key={index} detail={item} />
+      ))}
     </>
-  )
+  );
 };
 
 export default CrewList;

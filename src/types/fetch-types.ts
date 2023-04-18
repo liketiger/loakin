@@ -10,7 +10,7 @@ type CharacterDetail = {
   CharacterName: string,
   CharacterLevel: number,
   CharacterClassName: string,
-  ItemAvgLevel: string,
+  ItemAvgLevel: string | number,
   ItemMaxLevel?: string
 };
 
@@ -19,8 +19,8 @@ type CharacterInfo = {
 }
 
 type MemberType = {
-  name: string[],
-  main: string[],
+  name: string,
+  main: string,
   characterList: CharacterDetail[]
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { MemberType } from '../../types/fetch-types';
+import { CharacterDetail, MemberType } from '../../types/fetch-types';
 import CrewCharacterDetail from './CrewCharacterDetail';
 
 type CrewItemTypes = {
@@ -8,7 +8,6 @@ type CrewItemTypes = {
 };
 
 const CrewItem = (props: CrewItemTypes) => {
-
   const { detail } = props;
   return <ItemWrapper>
       <CrewName>{detail.name}</CrewName>

@@ -1,8 +1,8 @@
 # 👉 Feature Implementation list
 
 ## Domain Logic
-- [ ] fetch data from Lostark API
-- [ ] set Redux Typscript settings
+- [x] fetch data from Lostark API
+- [x] set Redux Typscript settings
 
 
 ## UI Logic
