@@ -3,6 +3,7 @@
 ## Domain Logic
 - [x] fetch data from Lostark API
 - [x] set Redux Typscript settings
+- [x] implement modal toggle feature
 
 
 ## UI Logic
@@ -23,7 +24,7 @@
     - [ ] navigate to character deatils of Crew page when each crew is clicked 
 - [x] make Crew page
   - [x] show crew list and their characters
-    - [ ] show detail info about selected character
+    - [ ] show detail info about selected character with modal
 
 
 ## Refactor
