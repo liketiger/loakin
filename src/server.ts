@@ -1,9 +1,10 @@
 import express, { Express, Request, Response } from 'express';
 
 const app: Express = express();
-const port = 5000;
+const port = 5001;
 
 app.get('/', (req: Request, res: Response) => {
+  console.log('sdf');
   res.send('sdf');
 });
 

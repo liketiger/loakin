@@ -32,7 +32,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:ts": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts",
-    "dev": "concurrently \"npm start\" \"npm run build:ts\""
+    "dev": "concurrently \"npm run build:ts\" \"npm start\""
   },
   "eslintConfig": {
     "extends": [
@@ -68,5 +68,6 @@
     "nodemon": "^2.0.22",
     "prettier": "^2.8.7",
     "ts-node": "^10.9.1"
-  }
+  },
+  "proxy": "http://localhost:5001"
 }
