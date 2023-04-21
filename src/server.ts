@@ -1,13 +1,34 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import { getSchedules, addSchedule, updateSchedule, deleteSchedule } from './controllers';
+
+dotenv.config();
 
 const app: Express = express();
-const port = 5001;
+const port = process.env.DB_PORT;
+const pwd: string = encodeURIComponent(process.env.DB_PASS as string);
+const host: string = process.env.DB_HOST!.replace('<password>', pwd) as string;
 
-app.get('/', (req: Request, res: Response) => {
-  console.log('sdf');
-  res.send('sdf');
-});
+app.use(express.json());
+app.use(cors());
 
-app.listen(port, () => {
-  console.log(`[server]: Server is running at <https://localhost>:${port}`);
+// app.route('/').get(getSchedules);
+
+app
+  .route('/schedule')
+  .get(getSchedules)
+  .post(addSchedule);
+
+app
+  .route('/schedule/:id')
+  .patch(updateSchedule)
+  .delete(deleteSchedule);
+
+mongoose.connect(host)
+.then(() => console.log('DB connection successful'));
+
+app.listen(5000, () => {
+  console.log(`[server]: Server is running at http://localhost:${port}`);
 });

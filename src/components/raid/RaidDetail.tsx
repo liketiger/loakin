@@ -1,11 +1,15 @@
 import React from 'react'
 import styled from 'styled-components';
 import RaidInfo from './RaidInfo';
+import { useAppDispatch, useAppSelector } from '../../utils/RTKhooks';
 
 const RaidDetail = () => {
+  const schedule = useAppSelector(state => state.calendar.schedules);
+  const raidDate = useAppSelector(state => state.raid.date);
+  const refinedDate = raidDate.split('-').slice(1).join('-');
   return (
     <RaidDetailWrapper>
-      <RaidDate>04/12/월</RaidDate>
+      <RaidDate>{refinedDate}</RaidDate>
       <RaidInfo />
     </RaidDetailWrapper>
   )

@@ -28,6 +28,10 @@ const GlobalStyle = createGlobalStyle`
   .fc-event {
     font-size: 16px;
   }
+
+  a.fc-event:hover {
+    background-color: transparent;
+  }
 `;
 
 export default GlobalStyle;

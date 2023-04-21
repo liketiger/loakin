@@ -15,7 +15,7 @@
     - [x] navigate to Crew Page when crew btn is clicked
 - [x] make Calendar page
   - [x] change color when hovered on each date
-  - [ ] show raid brief detail (name, time)
+  - [x] show raid brief detail (name, time)
   - [ ] make Raid detail page
     - [ ] show raid summarize
     - [ ] make modal that pops when create btn was pressed
@@ -32,5 +32,5 @@
 - [ ] extract with fnc
 
 ## ETC
-- [ ] set Backend with node.js and mongoDB
+- [x] set Backend with node.js and mongoDB
 - [ ] deploy website

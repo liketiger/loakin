@@ -5,22 +5,33 @@ type RaidDetail = {
   level: string,
   requireLevel?: number,
   time: string,
-  attendants: CharacterDetail[]
+  characterList: CharacterDetail[],
+  _id?: string
 };
 
 type CalendarDetail = {
   date: string,
-  raidList: RaidDetail[], 
+  raid: RaidDetail[],
+  _id?: string
+};
+
+type CalendarType = {
+  schedules: CalendarDetail[]
 };
 
 type ModalType = {
   isOpen: boolean
 }
 
+type RaidType = {
+  date: string
+}
+
 type CrewPayloadType = CharacterDetail[][];
 
-type InitialCalendarState = CalendarDetail[];
+type InitialCalendarState = CalendarType;
 type InitialCrewState = MemberType;
 type InitialModalState = ModalType;
+type InitialRaidState = RaidType;
 
-export { InitialCalendarState, InitialCrewState, CrewPayloadType, InitialModalState };
+export { InitialCalendarState, InitialCrewState, CrewPayloadType, InitialModalState, CalendarDetail, InitialRaidState };
