@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialRaidState } from "./data";
+import { CharacterDetail } from "../types/fetch-types";
 
 const initialState = initialRaidState;
 
@@ -9,6 +10,10 @@ const raidSlice = createSlice({
   reducers: {
     setDate(state, action: PayloadAction<string>) {
       state.date = action.payload;
+    },
+
+    setCharacterList(state, action: PayloadAction<CharacterDetail[]>) {
+      state.characterList = action.payload;
     }
   }
 });

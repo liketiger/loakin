@@ -4,7 +4,7 @@
 - [x] fetch data from Lostark API
 - [x] set Redux Typscript settings
 - [x] implement modal toggle feature
-
+- [ ] link back-end CRUD api to front-end features
 
 ## UI Logic
 - [x] set routers

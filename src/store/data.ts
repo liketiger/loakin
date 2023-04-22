@@ -15,5 +15,6 @@ export const initialCalendarState: InitialCalendarState = {
 };
 
 export const initialRaidState: InitialRaidState = {
-  date: ''
+  date: '',
+  characterList: []
 };

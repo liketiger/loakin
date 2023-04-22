@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { CharacterDetail } from '../../types/fetch-types';
 import CrewCharacterDetail from './CrewCharacterDetail';
+import CrewCharacterWrapper from '../common/CrewCharacterWrapper';
 
 type CrewItemTypes = {
   name: string,
@@ -12,9 +13,9 @@ const CrewItem = (props: CrewItemTypes) => {
   const { name, characterList } = props;
   return <ItemWrapper>
       <CrewName>{name}</CrewName>
-      <CrewCharacter>
+      <CrewCharacterWrapper>
         {characterList?.map((character, index) => <CrewCharacterDetail key={index} index={index} info={character} />)}
-      </CrewCharacter>
+      </CrewCharacterWrapper>
   </ItemWrapper>
 };
 

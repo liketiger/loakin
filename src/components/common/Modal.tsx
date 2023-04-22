@@ -9,7 +9,9 @@ const Modal = () => {
   const closeModalHandler = () => dispatch(modalActions.toggleModal());
 
   return <DimmedLayer onClick={closeModalHandler}>
-    <ModalContent onClickCapture={(e: React.MouseEvent<HTMLElement>) => e.stopPropagation()} />
+    <ModalContent onClickCapture={(e: React.MouseEvent<HTMLElement>) => e.stopPropagation()}>
+      준비중...
+    </ModalContent>
   </DimmedLayer>
 };
 

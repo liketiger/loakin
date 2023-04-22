@@ -24,7 +24,8 @@ type ModalType = {
 }
 
 type RaidType = {
-  date: string
+  date: string,
+  characterList: CharacterDetail[]
 }
 
 type CrewPayloadType = CharacterDetail[][];
@@ -34,4 +35,4 @@ type InitialCrewState = MemberType;
 type InitialModalState = ModalType;
 type InitialRaidState = RaidType;
 
-export { InitialCalendarState, InitialCrewState, CrewPayloadType, InitialModalState, CalendarDetail, InitialRaidState };
+export { InitialCalendarState, InitialCrewState, CrewPayloadType, InitialModalState, CalendarDetail, InitialRaidState, RaidDetail };

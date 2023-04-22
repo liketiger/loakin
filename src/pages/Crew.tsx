@@ -2,7 +2,7 @@ import React from 'react';
 import { CrewGrid } from '../components/crew/CrewGrid';
 
 const mock = {
-  date: '2023-05-03',
+  date: '2023-04-03',
   raid: [
     {
       name: "발탄",
@@ -38,10 +38,10 @@ const mock = {
           ItemAvgLevel: 1523,
         },
         {
-          ServerName: "실리안",
+          ServerName: "아브렐슈드",
           CharacterName: "에르가시안2",
           CharacterLevel: 57,
-          CharacterClassName: "블래스터",
+          CharacterClassName: "홀리나이트",
           ItemAvgLevel: 1523,
         }
       ]
