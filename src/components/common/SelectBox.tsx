@@ -5,7 +5,6 @@ import Button from './Button';
 
 type SelectBoxType = {
   text: string,
-  // option?: string[]
 }
 
 type OptionListType = {
@@ -59,7 +58,7 @@ const ArrowIcon = styled(RxChevronDown)`
   top: 50%;
   transform: translate3d(0, -50%, 0);
   right: 0;
-`
+`;
 
 const SelectLabel = styled(Button)<{ id: string }>`
   width: 100%;

@@ -15,6 +15,6 @@ const Button = (props: ButtonProps) => {
 const ButtonUI = styled.button`
   outline: none;
   border: none;
-`
+`;
 
 export default Button;

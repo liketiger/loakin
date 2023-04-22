@@ -5,6 +5,9 @@
 - [x] set Redux Typscript settings
 - [x] implement modal toggle feature
 - [ ] link back-end CRUD api to front-end features
+  - [x] implement create schedule feature
+  - [ ] implement update schedule feature
+  - [ ] implement delete schedule feature
 
 ## UI Logic
 - [x] set routers

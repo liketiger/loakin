@@ -9,7 +9,7 @@ const RaidCrew = () => {
 
   return (
     <RaidCrewWrapper>
-      {characterList.length === 0 
+      {characterList.length === 0 || !characterList
       ? <EmptyCrew />
       : characterList.map((character, index) => <RaidCrewInfo key={index} character={character} />)}
     </RaidCrewWrapper>

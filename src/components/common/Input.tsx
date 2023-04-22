@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 type InputType = {
   type: string,
-}
+};
 
 const Input = (props: InputType) => {
   return (

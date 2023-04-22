@@ -21,7 +21,7 @@ const CharacterTextUI = styled.span<TextPropType>`
   ? 'center'
   : 'start'
   };
-  color: ${({ type }) => type === 'class' 
+  color: ${({ type }) => type === 'class'
   ? 'brown'
   : type === 'name' || type === 'item'
   ? 'black'

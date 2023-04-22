@@ -10,6 +10,10 @@ const calendarSlice = createSlice({
   reducers: {
     setCalendar(state, action: PayloadAction<CalendarDetail[]>) {
       state.schedules = action.payload;
+    },
+
+    addCalendar(state, action: PayloadAction<CalendarDetail>) {
+      state.schedules.push(action.payload);
     }
   }
 });

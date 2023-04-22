@@ -25,7 +25,7 @@ const RaidDetail = () => {
   return (
     <RaidDetailWrapper>
       <RaidDate>{refineDate(raidDate)}</RaidDate>
-      {refinedRaid ? <RaidInfo raid={refinedRaid} /> : <Empty />}
+      {refinedRaid && refinedRaid.length !== 0 ? <RaidInfo raid={refinedRaid} /> : <Empty />}
     </RaidDetailWrapper>
   )
 };
@@ -40,6 +40,6 @@ const RaidDate = styled.div`
   padding: 10px;
   font-size: 30px;
   margin: 10px 0 15px 0;
-`
+`;
 
 export default RaidDetail;

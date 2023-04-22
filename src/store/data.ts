@@ -1,4 +1,4 @@
-import { InitialCalendarState, InitialCrewState, InitialModalState, InitialRaidState } from "../types/render-type";
+import { CalendarDetail, InitialCalendarState, InitialCrewState, InitialModalState, InitialRaidState } from "../types/render-type";
 
 export const initialCrewState: InitialCrewState = {
   name: ['이호', '황성재', '임찬호', '김민지'],
@@ -17,4 +17,9 @@ export const initialCalendarState: InitialCalendarState = {
 export const initialRaidState: InitialRaidState = {
   date: '',
   characterList: []
+};
+
+export const mockSchedule: CalendarDetail = {
+  date: '',
+  raid: []
 };
