@@ -24,8 +24,11 @@ app
 app
   .route('/schedule/:id')
   .post(addRaid)
-  .patch(updateSchedule)
-  .delete(deleteSchedule);
+
+app
+  .route('/schedule/:id/:raidId')
+  .delete(deleteSchedule)
+  .patch(updateSchedule);
 
 mongoose.connect(host)
 .then(() => console.log('DB connection successful'));

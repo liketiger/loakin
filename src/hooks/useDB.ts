@@ -45,10 +45,20 @@ const useDB = () => {
     dispatch(calendarActions.addCalendar(data));
   };
 
+  const deleteRaid = async (scheduleId: string, raidId: string) => {
+    await requestHttp({
+      url: `http://localhost:5000/schedule/${scheduleId}/${raidId}`,
+      method: 'DELETE',
+    });
+
+    dispatch(calendarActions.removeRaid({ scheduleId, raidId }));
+  };
+
   return {
     addSchedule,
     addRaid,
-    updateRaid
+    updateRaid,
+    deleteRaid
   }
 };
 

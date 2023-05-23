@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { FaEdit } from "react-icons/fa";
 import { IoIosCloseCircleOutline } from "react-icons/io";
@@ -6,63 +6,49 @@ import { RaidDetail } from '../../types/render-type';
 import { useAppDispatch } from '../../utils/RTKhooks';
 import { raidActions } from '../../store/raid';
 import { UIActions } from '../../store/ui';
+import { raidLevelTable } from '../../store/data';
+import useDB from '../../hooks/useDB';
 
-type RaidInfoProp = {
-  raid: RaidDetail[];
+type RaidInfoItemProps = {
+  item: RaidDetail;
+  scheduleId: string | undefined;
 };
 
-const raidLevelTable = {
-  '발탄(노말)': 1415,
-  '발탄(하드)': 1445,
-  '비아(노말)': 1430,
-  '비아(하드)': 1460,
-  '쿠크(노말)': 1475,
-  '아브(노말12)': 1490,
-  '아브(노말34)': 1500,
-  '아브(노말56)': 1520,
-  '아브(하드12)': 1540,
-  '아브(하드34)': 1550,
-  '아브(하드56)': 1560,
-  '일리(노말)': 1580,
-  '일리(하드)': 1600
-};
-
-const RaidInfo = (props: RaidInfoProp) => {
-  const { raid } = props;
+const RaidInfoItem = ({ item, scheduleId }: RaidInfoItemProps) => {
+  const { name, level, time, characterList, _id } = item;
   const [isSelected, setIsSelected] = useState('');
+  const newStr = `${name}(${level})`;
   const dispatch = useAppDispatch();
+  const { deleteRaid } = useDB();
 
-  const refineRaid = (item: RaidDetail) => {
-    const { name, level, time, characterList, _id } = item;
-    const newStr = `${name}(${level})`;
-
-    const raidHandler = () => {
-      setIsSelected(_id as string);
-      dispatch(raidActions.setCharacterList(characterList));
-      dispatch(UIActions.setIsCreate(false));
-      dispatch(UIActions.setIsRaidListSelected(true));
-    };
-
-    return (
-      <RaidInfoWrapper key={_id} onClick={raidHandler} id={_id as string} isSelected={isSelected}>
-        <IconWrapper type='close'>
-          <RaidInfoClose />
-        </IconWrapper>
-        <RaidText>{time}</RaidText>
-        <RaidText>{newStr}</RaidText>
-        <RaidText>{raidLevelTable[newStr as keyof typeof raidLevelTable]}</RaidText>
-        <IconWrapper type='edit'>
-          <RaidInfoEdit />
-        </IconWrapper>
-        <CoverUpBox className='cover-box' />
-      </RaidInfoWrapper>
-    );
+  const raidHandler = () => {
+    setIsSelected(_id as string);
+    dispatch(raidActions.setCharacterList(characterList));
+    dispatch(UIActions.setIsCreate(false));
+    dispatch(UIActions.setIsRaidListSelected(true));
   };
 
-  return <>
-   {raid.map(refineRaid)}
-  </>;
+  const closeHandler = (e: MouseEvent) => {
+    e.stopPropagation();
+    deleteRaid(scheduleId!, _id!);
+  }
+
+  return (
+    <RaidInfoWrapper key={_id} onClick={raidHandler} id={_id as string} isSelected={isSelected}>
+      <IconWrapper type='close' onClick={closeHandler}>
+        <RaidInfoClose />
+      </IconWrapper>
+      <RaidText>{time}</RaidText>
+      <RaidText>{newStr}</RaidText>
+      <RaidText>{raidLevelTable[newStr as keyof typeof raidLevelTable]}</RaidText>
+      <IconWrapper type='edit'>
+        <RaidInfoEdit />
+      </IconWrapper>
+      <CoverUpBox className='cover-box' />
+    </RaidInfoWrapper>
+  );
 };
+
 
 const RaidInfoWrapper = styled.div<{ isSelected: string, id: string }>`
   margin: 0 auto;
@@ -160,6 +146,6 @@ const CoverUpBox = styled.div`
   height: 40px;
   position: absolute;
   z-index: -1;
-`
+`;
 
-export default RaidInfo;
+export default RaidInfoItem;

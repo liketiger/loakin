@@ -29,6 +29,11 @@ type MemberType = {
 type NewRaidPayloadTypes = {
   newRaid: RaidDetail,
   id: string
-}
+};
+
+export type RemoveRaidPayloadTypes = {
+  scheduleId: string,
+  raidId: string
+};
 
 export { RequestData, CharacterDetail, CharacterInfo, MemberType, NewRaidPayloadTypes };
