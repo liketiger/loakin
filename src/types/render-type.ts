@@ -21,12 +21,19 @@ type CalendarType = {
 
 type ModalType = {
   isOpen: boolean
-}
+};
 
 type RaidType = {
   date: string,
   characterList: CharacterDetail[]
+};
+
+type UIType = {
+  isCreate: boolean,
+  isRaidListSelected: boolean
 }
+
+type FormType = RaidDetail;
 
 type CrewPayloadType = CharacterDetail[][];
 
@@ -34,5 +41,7 @@ type InitialCalendarState = CalendarType;
 type InitialCrewState = MemberType;
 type InitialModalState = ModalType;
 type InitialRaidState = RaidType;
+type InitialUIState = UIType;
+type InitialFormState = FormType;
 
-export { InitialCalendarState, InitialCrewState, CrewPayloadType, InitialModalState, CalendarDetail, InitialRaidState, RaidDetail };
+export { InitialCalendarState, InitialCrewState, CrewPayloadType, InitialModalState, CalendarDetail, InitialRaidState, RaidDetail, InitialUIState, InitialFormState };

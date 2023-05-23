@@ -11,9 +11,13 @@ const useCalendar = () => {
       method: 'GET',
       body: null
     });
+    console.log(res);
     return res.data.schedules;
   };
-  const fetchCalendar = () => fetchCalendarList().then(data => dispatch(calendarActions.setCalendar(data)));
+  const fetchCalendar = () => fetchCalendarList().then(data => {
+    dispatch(calendarActions.setCalendar(data));
+    // console.log(data);
+  });
 
   return fetchCalendar;
 };

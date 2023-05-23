@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { ObjectId } from "mongodb";
 import Schedule from "./models";
 
 const getSchedules = async (req: Request, res: Response) => {
@@ -31,6 +32,28 @@ const addSchedule = async (req: Request, res: Response) => {
     });
   } catch (err) {
     res.status(400).json({
+      status: 'fail',
+      message: err
+    });
+  }
+};
+
+const addRaid = async (req: Request, res: Response) => {
+  try {
+    const schedule = await Schedule.updateOne({ _id: req.params.id }, {
+      $push: {
+        "raid": req.body
+      }
+    });
+  
+    res.status(200).json({
+      status: 'success',
+      data: {
+        schedule
+      }
+    });
+  } catch (err) {
+    res.status(404).json({
       status: 'fail',
       message: err
     });
@@ -73,4 +96,4 @@ const deleteSchedule = async (req: Request, res: Response) => {
   }
 };
 
-export { getSchedules, updateSchedule, addSchedule, deleteSchedule };
+export { getSchedules, updateSchedule, addSchedule, addRaid, deleteSchedule };

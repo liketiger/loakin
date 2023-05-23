@@ -2,43 +2,69 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { RxChevronDown } from 'react-icons/rx'
 import Button from './Button';
+import { useAppDispatch, useAppSelector } from '../../utils/RTKhooks';
+import { formActions } from '../../store/form';
+import { raidLevelList, raidLevelList2, raidNameList, raidTimeList } from '../../store/data';
 
 type SelectBoxType = {
   text: string,
-}
+};
 
 type OptionListType = {
   isDropped: boolean,
 };
 
 const SelectBox = (props: SelectBoxType) => {
+  const { text } = props;
   const [isDropped, setIsDropped] = useState(false);
-  const [btnTxt, setBtnTxt] = useState(props.text);
+  const [btnTxt, setBtnTxt] = useState(text);
+  // const [dropdownList, setDropdownList] = useState<string[]>([]);
+  const dispatch = useAppDispatch();
+  const raidName = useAppSelector(state => state.form.name);
+  let dropdownList: string[] = [];
+  if (text === '레이드') dropdownList = raidNameList;
+  if (text === '난이도') {
+    dropdownList = raidLevelList;
+    if (raidName === '아브') dropdownList = raidLevelList2;
+    if (raidName === '쿠크') dropdownList = dropdownList.slice(0, 1);
+  }
+  if (text === '시간') dropdownList = raidTimeList;
 
   const closeDropdownHandler = (e: MouseEvent) => {
-    if (!((e.target as HTMLElement).matches('#selectBtn'))) setIsDropped(false);
-  }
+    if (!((e.target as HTMLElement).matches('.selectBtn'))) setIsDropped(false);
+  };
 
   useEffect(() => {
     document.addEventListener('click', closeDropdownHandler);
-    setBtnTxt(props.text);
-  }, [props.text]);
+    setBtnTxt(text);
+    // if (text === '레이드') setDropdownList(raidNameList);
+    // if (text === '난이도') {
+    //   setDropdownList(raidLevelList);
+    //   if (raidName === '아브') setDropdownList(raidLevelList2);
+    // }
+    // if (text === '시간') setDropdownList(raidTimeList);
+  }, [text]);
   
   const dropHandler = () => setIsDropped(prev => !prev);
 
   const listClickHandler = (e: React.MouseEvent<HTMLElement>) => {
-    setBtnTxt((e.target as HTMLButtonElement).textContent!);
-  }
+    const txt = (e.target as HTMLButtonElement).textContent!;
+    setBtnTxt(txt);
+    if (text === '레이드') dispatch(formActions.setName(txt));
+    if (text === '난이도') dispatch(formActions.setLevel(txt));
+    if (text === '시간') dispatch(formActions.setTime(txt));
+  };
 
   return (
     <SelectBoxUI>
-      <SelectLabel id='selectBtn' onClick={dropHandler}>{btnTxt}</SelectLabel>
+      <SelectLabel className='selectBtn' onClick={dropHandler} type="button">{btnTxt}</SelectLabel>
       <OptionList isDropped={isDropped}>
-        <OptionItem onClick={listClickHandler}>이호</OptionItem>
+        {dropdownList.map((item, index) => <OptionItem key={index} onClick={listClickHandler}>{item}</OptionItem>)}
+        {/* <OptionItem onClick={listClickHandler}>이호</OptionItem>
         <OptionItem>황성재</OptionItem>
         <OptionItem>이름이너무길어서어허</OptionItem>
         <OptionItem>이름이너무길어서어허</OptionItem>
-        <OptionItem>이름이너무길어서어허</OptionItem>
+        <OptionItem>이름이너무길어서어허</OptionItem> */}
       </OptionList>
       <ArrowIcon />
     </SelectBoxUI>
@@ -46,11 +72,11 @@ const SelectBox = (props: SelectBoxType) => {
 };
 
 const SelectBoxUI = styled.div`
-  /* width: 200px; */
   height: 40px;
   border: 1px solid black;
   border-radius: 5px;
   position: relative;
+  top: 20%;
 `;
 
 const ArrowIcon = styled(RxChevronDown)`
@@ -60,7 +86,7 @@ const ArrowIcon = styled(RxChevronDown)`
   right: 0;
 `;
 
-const SelectLabel = styled(Button)<{ id: string }>`
+const SelectLabel = styled(Button)<{ className: string }>`
   width: 100%;
   height: 100%;
   background-color: transparent;

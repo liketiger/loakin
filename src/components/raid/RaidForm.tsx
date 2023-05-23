@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Button from '../common/Button';
 import Input from '../common/Input';
 import SelectBox from '../common/SelectBox';
@@ -10,18 +10,28 @@ import { calendarActions } from '../../store/calendar';
 import CRUDActions from '../../hooks/useDB';
 import useDB from '../../hooks/useDB';
 import RaidScheduleForm from './RaidScheduleForm';
+import { UIActions } from '../../store/ui';
 
 type SelectBtnType = {
   isCreate: boolean;
   btnType: string;
+  isRaid?: boolean;
 };
 
 const RaidForm = () => {
-  const [isCreate, setIsCreate] = useState(true);
-  const selectCreateHandler = () => setIsCreate(true);
-  const selectAttendHandler = () => setIsCreate(false);
-  const schedule = useAppSelector(state => state.calendar.schedules);
-  const raidDate = useAppSelector(state => state.raid.date);
+  const isCreate = useAppSelector(state => state.ui.isCreate);
+  const dispatch = useAppDispatch();
+  const selectCreateHandler = () => dispatch(UIActions.setIsCreate(true));
+  const selectAttendHandler = () => dispatch(UIActions.setIsCreate(false));
+  let schedule = useAppSelector(state => state.calendar.schedules);
+  let raidDate = useAppSelector(state => state.raid.date);
+  if (schedule.length !== 0) localStorage.setItem('schedule', JSON.stringify(schedule));
+
+  schedule = schedule.length === 0 ? JSON.parse((localStorage.getItem('schedule') as string)) : schedule;
+  raidDate = raidDate || localStorage.getItem('raid-date') as string;
+
+  const currentId = schedule.find(item => item.date === raidDate)?._id as string;
+
   const newSchedule = { ...mockSchedule, date: raidDate };
 
   const themeHandler = ({ isCreate, btnType }: SelectBtnType) => {
@@ -33,18 +43,22 @@ const RaidForm = () => {
     return 'white';
   };
 
+  const currentSchedule = schedule.find(item => item.date === raidDate);
+  const isRaidList = useAppSelector(state => state.ui.isRaidListSelected);
+
   return (
     <RaidFormWrapper>
-      {!schedule.find(item => item.date === raidDate) && <RaidScheduleForm newSchedule={newSchedule} />}
+      {!currentSchedule && <RaidScheduleForm newSchedule={newSchedule} />}
       <BtnWrapper>
-        <RaidFormSelectBtn theme={themeHandler} onClick={selectCreateHandler} isCreate={isCreate} btnType="create">
+        <RaidFormSelectBtn theme={themeHandler} onClick={selectCreateHandler} isRaid={isRaidList} isCreate={isCreate} btnType="create">
           레이드 생성
         </RaidFormSelectBtn>
-        <RaidFormSelectBtn theme={themeHandler} onClick={selectAttendHandler} isCreate={isCreate} btnType="attend">
+        {isRaidList
+        && <RaidFormSelectBtn theme={themeHandler} onClick={selectAttendHandler} isRaid={isRaidList} isCreate={isCreate} btnType="attend">
           레이드 참가
-        </RaidFormSelectBtn>
+        </RaidFormSelectBtn>}
       </BtnWrapper>
-      <RaidFormType isCreate={isCreate} />
+      <RaidFormType currentId={currentId} isCreate={isCreate} />
     </RaidFormWrapper>
   );
 };
@@ -60,9 +74,14 @@ const RaidFormWrapper = styled.section`
 const BtnWrapper = styled.div``;
 
 const RaidFormSelectBtn = styled(Button)<SelectBtnType>`
-  width: 50%;
+  width: ${({ isRaid }) => isRaid ? '50%' : '100%'};
   height: 50px;
   background-color: ${(props) => props.theme(props)};
+  ${({ isRaid }) => isRaid && css`
+    &:hover {
+      cursor: pointer;
+    }
+  `};
 `;
 
 export default RaidForm;

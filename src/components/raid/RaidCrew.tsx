@@ -6,10 +6,11 @@ import Empty from '../common/Empty';
 
 const RaidCrew = () => {
   const characterList = useAppSelector(state => state.raid.characterList)!;
+  const isRaidList = useAppSelector(state => state.ui.isRaidListSelected);
 
   return (
     <RaidCrewWrapper>
-      {characterList.length === 0 || !characterList
+      {characterList.length === 0 || !characterList || !isRaidList
       ? <EmptyCrew />
       : characterList.map((character, index) => <RaidCrewInfo key={index} character={character} />)}
     </RaidCrewWrapper>

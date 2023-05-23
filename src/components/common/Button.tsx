@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 type ButtonProps = {
   children: string,
-  onClick?: () => void
+  onClick?: () => void,
+  type?: 'submit' | 'reset' | 'button' | undefined;
 };
 
 const Button = (props: ButtonProps) => {

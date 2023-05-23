@@ -1,6 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialCalendarState } from "./data";
-import { CalendarDetail } from "../types/render-type";
+import { CalendarDetail, RaidDetail } from "../types/render-type";
+import { NewRaidPayloadTypes } from "../types/fetch-types";
+import Schedule from "../models";
 
 const initialState = initialCalendarState;
 
@@ -14,6 +16,11 @@ const calendarSlice = createSlice({
 
     addCalendar(state, action: PayloadAction<CalendarDetail>) {
       state.schedules.push(action.payload);
+    },
+    
+    addRaid(state, action: PayloadAction<NewRaidPayloadTypes>) {
+      const { id, newRaid } = action.payload;
+      state.schedules.find(schedule => schedule._id === id)?.raid.push(newRaid);
     }
   }
 });

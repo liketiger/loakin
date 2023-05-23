@@ -2,7 +2,7 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { getSchedules, addSchedule, updateSchedule, deleteSchedule } from './controllers';
+import { getSchedules, addSchedule, updateSchedule, deleteSchedule, addRaid } from './controllers';
 
 dotenv.config();
 
@@ -23,6 +23,7 @@ app
 
 app
   .route('/schedule/:id')
+  .post(addRaid)
   .patch(updateSchedule)
   .delete(deleteSchedule);
 

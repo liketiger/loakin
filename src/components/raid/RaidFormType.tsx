@@ -1,18 +1,25 @@
-import React, { FormEvent } from 'react'
+import React, { FormEvent, useState } from 'react'
 import styled from 'styled-components';
 import Button from '../common/Button';
 import SelectBox from '../common/SelectBox';
+import { useAppDispatch, useAppSelector } from '../../utils/RTKhooks';
+import { calendarActions } from '../../store/calendar';
+import useDB from '../../hooks/useDB';
 
 type RaidFormPropType = {
-  isCreate: boolean
+  isCreate: boolean,
+  currentId: string
 };
 
 const RaidFormType = (props: RaidFormPropType) => {
-  const { isCreate } = props;
+  const { isCreate, currentId } = props;
+  const { addRaid } = useDB();
+  const raidDetail = useAppSelector(state => state.form);
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  }
+    if (isCreate) addRaid(raidDetail, currentId);
+  };
 
   return (
     <Form onSubmit={submitHandler}>
@@ -28,7 +35,7 @@ const Form = styled.form`
   flex: 1;
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: start;
   position: relative;
 `;
 

@@ -37,3 +37,6 @@
 ## ETC
 - [x] set Backend with node.js and mongoDB
 - [ ] deploy website
+
+// select box 추출
+// 레이드 두번 생성됨

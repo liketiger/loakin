@@ -2,7 +2,7 @@ import React from 'react'
 import { MdContentPasteOff } from "react-icons/md";
 import styled from 'styled-components';
 
-const Empty = (props: any) => {
+const Empty = (props: object) => {
   return (
     <EmptyContentWrapper {...props}>
       <EmptyContent />

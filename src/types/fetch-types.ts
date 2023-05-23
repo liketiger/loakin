@@ -1,3 +1,5 @@
+import { RaidDetail } from "./render-type";
+
 type RequestData = {
   url: string,
   method: string,
@@ -24,4 +26,9 @@ type MemberType = {
   characterList: CharacterDetail[][]
 };
 
-export { RequestData, CharacterDetail, CharacterInfo, MemberType };
+type NewRaidPayloadTypes = {
+  newRaid: RaidDetail,
+  id: string
+}
+
+export { RequestData, CharacterDetail, CharacterInfo, MemberType, NewRaidPayloadTypes };

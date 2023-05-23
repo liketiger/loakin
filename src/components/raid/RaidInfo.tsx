@@ -5,6 +5,7 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import { RaidDetail } from '../../types/render-type';
 import { useAppDispatch } from '../../utils/RTKhooks';
 import { raidActions } from '../../store/raid';
+import { UIActions } from '../../store/ui';
 
 type RaidInfoProp = {
   raid: RaidDetail[];
@@ -34,19 +35,20 @@ const RaidInfo = (props: RaidInfoProp) => {
   const refineRaid = (item: RaidDetail) => {
     const { name, level, time, characterList, _id } = item;
     const newStr = `${name}(${level})`;
-    const newTime = time.split(':').slice(0, -1).join(':');
 
     const raidHandler = () => {
       setIsSelected(_id as string);
       dispatch(raidActions.setCharacterList(characterList));
-    }
+      dispatch(UIActions.setIsCreate(false));
+      dispatch(UIActions.setIsRaidListSelected(true));
+    };
 
     return (
       <RaidInfoWrapper key={_id} onClick={raidHandler} id={_id as string} isSelected={isSelected}>
         <IconWrapper type='close'>
           <RaidInfoClose />
         </IconWrapper>
-        <RaidText>{newTime}</RaidText>
+        <RaidText>{time}</RaidText>
         <RaidText>{newStr}</RaidText>
         <RaidText>{raidLevelTable[newStr as keyof typeof raidLevelTable]}</RaidText>
         <IconWrapper type='edit'>
