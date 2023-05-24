@@ -1,8 +1,8 @@
 import { CalendarDetail, InitialCalendarState, InitialCrewState, InitialFormState, InitialModalState, InitialRaidState, InitialUIState } from "../types/render-type";
 
 export const initialCrewState: InitialCrewState = {
-  name: ['이호', '황성재', '임찬호', '김민지'],
-  main: ['호얏치', '에르가시안', '임찬호임', '찬호지키미'],
+  name: ['이호', '황성재', '임찬호', '김민지', '김가은'],
+  main: ['호얏치', '에르가시안', '임찬호임', '찬호지키미', '실키안'],
   characterList: []
 };
 
@@ -16,7 +16,8 @@ export const initialCalendarState: InitialCalendarState = {
 
 export const initialRaidState: InitialRaidState = {
   date: '',
-  characterList: []
+  characterList: [],
+  id: ''
 };
 
 export const initialUIState: InitialUIState = {

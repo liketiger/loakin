@@ -36,4 +36,10 @@ export type RemoveRaidPayloadTypes = {
   raidId: string
 };
 
+export type AddCrewPayloadTypes = {
+  data: CharacterDetail,
+  scheduleId: string,
+  raidId: string
+}
+
 export { RequestData, CharacterDetail, CharacterInfo, MemberType, NewRaidPayloadTypes };

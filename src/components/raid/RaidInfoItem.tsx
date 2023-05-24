@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { FaEdit } from "react-icons/fa";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { RaidDetail } from '../../types/render-type';
-import { useAppDispatch } from '../../utils/RTKhooks';
+import { useAppDispatch, useAppSelector } from '../../utils/RTKhooks';
 import { raidActions } from '../../store/raid';
 import { UIActions } from '../../store/ui';
 import { raidLevelTable } from '../../store/data';
@@ -16,13 +16,13 @@ type RaidInfoItemProps = {
 
 const RaidInfoItem = ({ item, scheduleId }: RaidInfoItemProps) => {
   const { name, level, time, characterList, _id } = item;
-  const [isSelected, setIsSelected] = useState('');
+  const currentRaidId = useAppSelector(state => state.raid.id);
   const newStr = `${name}(${level})`;
   const dispatch = useAppDispatch();
   const { deleteRaid } = useDB();
 
   const raidHandler = () => {
-    setIsSelected(_id as string);
+    dispatch(raidActions.setCurrentId(_id!));
     dispatch(raidActions.setCharacterList(characterList));
     dispatch(UIActions.setIsCreate(false));
     dispatch(UIActions.setIsRaidListSelected(true));
@@ -31,29 +31,29 @@ const RaidInfoItem = ({ item, scheduleId }: RaidInfoItemProps) => {
   const closeHandler = (e: MouseEvent) => {
     e.stopPropagation();
     deleteRaid(scheduleId!, _id!);
-  }
+  };
 
   return (
-    <RaidInfoWrapper key={_id} onClick={raidHandler} id={_id as string} isSelected={isSelected}>
+    <RaidInfoWrapper onClick={raidHandler} id={_id as string} currentRaidId={currentRaidId}>
       <IconWrapper type='close' onClick={closeHandler}>
         <RaidInfoClose />
       </IconWrapper>
       <RaidText>{time}</RaidText>
       <RaidText>{newStr}</RaidText>
       <RaidText>{raidLevelTable[newStr as keyof typeof raidLevelTable]}</RaidText>
-      <IconWrapper type='edit'>
+      {/* <IconWrapper type='edit'>
         <RaidInfoEdit />
-      </IconWrapper>
+      </IconWrapper> */}
       <CoverUpBox className='cover-box' />
     </RaidInfoWrapper>
   );
 };
 
 
-const RaidInfoWrapper = styled.div<{ isSelected: string, id: string }>`
+const RaidInfoWrapper = styled.div<{ currentRaidId: string, id: string }>`
   margin: 0 auto;
   margin-bottom: 10px;
-  background-color: ${({ isSelected, id }) => isSelected === id ? 'grey' : '#ff8400'};
+  background-color: ${({ currentRaidId, id }) => currentRaidId === id ? 'grey' : '#ff8400'};
   width: 400px;
   height: 40px;
   border-radius: 5px;
@@ -74,12 +74,12 @@ const RaidText = styled.span`
   font-size: 20px;
 `;
 
-const RaidInfoEdit = styled(FaEdit)`
-  position: absolute;
-  top: 50%;
-  right: 5px;
-  transform: translate3d(0, -55%, 0);
-`;
+// const RaidInfoEdit = styled(FaEdit)`
+//   position: absolute;
+//   top: 50%;
+//   right: 5px;
+//   transform: translate3d(0, -55%, 0);
+// `;
 
 const RaidInfoClose = styled(IoIosCloseCircleOutline)`
   position: absolute;

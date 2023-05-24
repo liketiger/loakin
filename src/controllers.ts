@@ -86,7 +86,7 @@ const deleteSchedule = async (req: Request, res: Response) => {
 
     const schedule = await Schedule.findById(id);
 
-    if (!schedule) res.status(404).json({ error: 'Calendar not found' });
+    if (!schedule) res.status(404).json({ error: 'Schedule not found' });
 
     const raidIndex = schedule!.raid.findIndex(raid => raid._id!.toString() === raidId);
 
@@ -108,4 +108,32 @@ const deleteSchedule = async (req: Request, res: Response) => {
   }
 };
 
-export { getSchedules, updateSchedule, addSchedule, addRaid, deleteSchedule };
+const addCrew = async (req: Request, res: Response) => {
+  try {
+    const { id, raidId } = req.params;
+
+    const schedule = await Schedule.findById(id);
+
+    if (!schedule) res.status(404).json({ error: 'Schedule not found' });
+
+    const raidIndex = schedule!.raid.findIndex(raid => raid._id!.toString() === raidId);
+
+    if (raidIndex === -1) res.status(404).json({ error: 'Raid not found' });
+
+    schedule!.raid[raidIndex].characterList.push(req.body);
+
+    await schedule!.save();
+
+    res.status(200).json({
+      status: 'success',
+      message: 'null'
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err
+    });
+  }
+};
+
+export { getSchedules, addSchedule, addRaid, updateSchedule, deleteSchedule, addCrew };

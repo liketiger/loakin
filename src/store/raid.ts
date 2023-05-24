@@ -14,6 +14,14 @@ const raidSlice = createSlice({
 
     setCharacterList(state, action: PayloadAction<CharacterDetail[]>) {
       state.characterList = action.payload;
+    },
+
+    setCurrentId(state, action: PayloadAction<string>) {
+      state.id = action.payload;
+    },
+
+    addCharacterList(state, action: PayloadAction<CharacterDetail>) {
+      state.characterList.push(action.payload);
     }
   }
 });

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initialFormState } from './data';
+import { CharacterDetail } from '../types/fetch-types';
 
 const initialState = initialFormState;
 

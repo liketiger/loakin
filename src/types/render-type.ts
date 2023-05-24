@@ -40,8 +40,10 @@ type CrewPayloadType = CharacterDetail[][];
 type InitialCalendarState = CalendarType;
 type InitialCrewState = MemberType;
 type InitialModalState = ModalType;
-type InitialRaidState = RaidType;
 type InitialUIState = UIType;
 type InitialFormState = FormType;
+interface InitialRaidState extends RaidType {
+  id: string
+}
 
 export { InitialCalendarState, InitialCrewState, CrewPayloadType, InitialModalState, CalendarDetail, InitialRaidState, RaidDetail, InitialUIState, InitialFormState };

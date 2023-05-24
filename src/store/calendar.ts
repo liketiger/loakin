@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialCalendarState } from "./data";
 import { CalendarDetail, RaidDetail } from "../types/render-type";
-import { NewRaidPayloadTypes, RemoveRaidPayloadTypes } from "../types/fetch-types";
+import { AddCrewPayloadTypes, CharacterDetail, NewRaidPayloadTypes, RemoveRaidPayloadTypes } from "../types/fetch-types";
 import Schedule from "../models";
 
 const initialState = initialCalendarState;
@@ -28,7 +28,13 @@ const calendarSlice = createSlice({
       const raidArr = state.schedules.find(schedule => schedule._id === scheduleId)!.raid!;
       const raidIdx = raidArr.findIndex(item => item._id === raidId);
       raidArr.splice(raidIdx, 1);
-    }
+    },
+
+    // addCrew(state, action: PayloadAction<AddCrewPayloadTypes>) {
+    //   const { data, scheduleId, raidId } = action.payload;
+    //   const raidList = state.schedules.find(schedule => schedule._id === scheduleId)!.raid
+    //   raidList.find(raid => raid._id === raidId)!.characterList.push(data);
+    // },
   }
 });
 
