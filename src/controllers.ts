@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { ObjectId } from "mongodb";
 import Schedule from "./models";
 
 const getSchedules = async (req: Request, res: Response) => {
@@ -83,7 +82,6 @@ const updateSchedule = async (req: Request, res: Response) => {
 const deleteSchedule = async (req: Request, res: Response) => {
   try {
     const { id, raidId } = req.params;
-
     const schedule = await Schedule.findById(id);
 
     if (!schedule) res.status(404).json({ error: 'Schedule not found' });
@@ -93,7 +91,6 @@ const deleteSchedule = async (req: Request, res: Response) => {
     if (raidIndex === -1) res.status(404).json({ error: 'Raid not found' });
 
     schedule!.raid.splice(raidIndex, 1);
-
     await schedule!.save();
 
     res.status(200).json({
@@ -111,7 +108,6 @@ const deleteSchedule = async (req: Request, res: Response) => {
 const addCrew = async (req: Request, res: Response) => {
   try {
     const { id, raidId } = req.params;
-
     const schedule = await Schedule.findById(id);
 
     if (!schedule) res.status(404).json({ error: 'Schedule not found' });
@@ -121,7 +117,6 @@ const addCrew = async (req: Request, res: Response) => {
     if (raidIndex === -1) res.status(404).json({ error: 'Raid not found' });
 
     schedule!.raid[raidIndex].characterList.push(req.body);
-
     await schedule!.save();
 
     res.status(200).json({
@@ -136,4 +131,29 @@ const addCrew = async (req: Request, res: Response) => {
   }
 };
 
-export { getSchedules, addSchedule, addRaid, updateSchedule, deleteSchedule, addCrew };
+const deleteCrew = async (req: Request, res: Response) => {
+  try {
+    const { id, raidId, crewId } = req.params;
+    const schedule = await Schedule.findById(id);
+
+    if (!schedule) res.status(404).json({ error: 'Schedule not found' });
+
+    const raid = schedule!.raid.find(raid => raid._id!.toString() === raidId);
+    const crewIndex = raid!.characterList.findIndex(character => character._id!.toString() === crewId);
+
+    raid?.characterList.splice(crewIndex, 1);
+    await schedule!.save();
+
+    res.status(200).json({
+      status: 'success',
+      message: 'null'
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err
+    });
+  }
+};
+
+export { getSchedules, addSchedule, addRaid, updateSchedule, deleteSchedule, addCrew, deleteCrew };

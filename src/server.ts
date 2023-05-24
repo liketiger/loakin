@@ -2,7 +2,7 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { getSchedules, addSchedule, updateSchedule, deleteSchedule, addRaid, addCrew } from './controllers';
+import { getSchedules, addSchedule, updateSchedule, deleteSchedule, addRaid, addCrew, deleteCrew } from './controllers';
 
 dotenv.config();
 
@@ -30,6 +30,10 @@ app
   .delete(deleteSchedule)
   .patch(updateSchedule)
   .post(addCrew)
+
+app
+  .route('/schedule/:id/:raidId/:crewId')
+  .delete(deleteCrew)
 
 mongoose.connect(host)
 .then(() => console.log('DB connection successful'));

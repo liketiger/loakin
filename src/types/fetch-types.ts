@@ -13,7 +13,8 @@ type CharacterDetail = {
   CharacterLevel: number,
   CharacterClassName: string,
   ItemAvgLevel: string | number,
-  ItemMaxLevel?: string
+  ItemMaxLevel?: string,
+  _id?: string
 };
 
 type CharacterInfo = {

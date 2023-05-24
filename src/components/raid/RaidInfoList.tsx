@@ -7,7 +7,7 @@ type RaidInfoProp = {
   scheduleId: string | undefined;
 };
 
-const RaidInfo = (props: RaidInfoProp) => {
+const RaidInfoList = (props: RaidInfoProp) => {
   const { raid, scheduleId } = props;
 
   return <>
@@ -15,4 +15,4 @@ const RaidInfo = (props: RaidInfoProp) => {
   </>;
 };
 
-export default RaidInfo;
+export default RaidInfoList;

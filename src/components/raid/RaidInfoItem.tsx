@@ -16,13 +16,14 @@ type RaidInfoItemProps = {
 
 const RaidInfoItem = ({ item, scheduleId }: RaidInfoItemProps) => {
   const { name, level, time, characterList, _id } = item;
-  const currentRaidId = useAppSelector(state => state.raid.id);
+  const currentRaidId = useAppSelector(state => state.raid.raidId);
   const newStr = `${name}(${level})`;
   const dispatch = useAppDispatch();
   const { deleteRaid } = useDB();
 
   const raidHandler = () => {
-    dispatch(raidActions.setCurrentId(_id!));
+    dispatch(raidActions.setCurrentRaidId(_id!));
+    dispatch(raidActions.setCurrentScheduleId(scheduleId as string));
     dispatch(raidActions.setCharacterList(characterList));
     dispatch(UIActions.setIsCreate(false));
     dispatch(UIActions.setIsRaidListSelected(true));

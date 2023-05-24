@@ -16,12 +16,20 @@ const raidSlice = createSlice({
       state.characterList = action.payload;
     },
 
-    setCurrentId(state, action: PayloadAction<string>) {
-      state.id = action.payload;
+    setCurrentRaidId(state, action: PayloadAction<string>) {
+      state.raidId = action.payload;
     },
 
-    addCharacterList(state, action: PayloadAction<CharacterDetail>) {
+    setCurrentScheduleId(state, action: PayloadAction<string>) {
+      state.scheduleId = action.payload;
+    },
+
+    addCharacter(state, action: PayloadAction<CharacterDetail>) {
       state.characterList.push(action.payload);
+    },
+
+    removeCharacter(state, action: PayloadAction<string>) {
+      state.characterList = state.characterList.filter(character => character._id !== action.payload);
     }
   }
 });

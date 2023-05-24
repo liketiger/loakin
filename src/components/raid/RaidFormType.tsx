@@ -23,7 +23,7 @@ const RaidFormType = (props: RaidFormPropType) => {
     characterRef: useRef<HTMLButtonElement>(null),
   };
   const raidDetail = useAppSelector(state => state.form);
-  const currentRaidId = useAppSelector(state => state.raid.id);
+  const currentRaidId = useAppSelector(state => state.raid.raidId);
   const [selectedName, setSelectedName] = useState('');
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {

@@ -17,7 +17,8 @@ export const initialCalendarState: InitialCalendarState = {
 export const initialRaidState: InitialRaidState = {
   date: '',
   characterList: [],
-  id: ''
+  raidId: '',
+  scheduleId: ''
 };
 
 export const initialUIState: InitialUIState = {

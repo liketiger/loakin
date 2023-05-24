@@ -66,14 +66,24 @@ const useDB = () => {
       body: JSON.stringify(data)
     });
 
-    dispatch(raidActions.addCharacterList(data));
+    dispatch(raidActions.addCharacter(data));
+  };
+
+  const deleteCrew = async (scheduleId: string, raidId: string, crewId: string) => {
+    await requestHttp({
+      url: `http://localhost:5000/schedule/${scheduleId}/${raidId}/${crewId}`,
+      method: 'DELETE',
+    });
+
+    dispatch(raidActions.removeCharacter(crewId));
   };
 
   return {
     addSchedule,
     addRaid,
     deleteRaid,
-    addCrew
+    addCrew,
+    deleteCrew
   }
 };
 

@@ -43,7 +43,8 @@ type InitialModalState = ModalType;
 type InitialUIState = UIType;
 type InitialFormState = FormType;
 interface InitialRaidState extends RaidType {
-  id: string
+  raidId: string,
+  scheduleId: string
 }
 
 export { InitialCalendarState, InitialCrewState, CrewPayloadType, InitialModalState, CalendarDetail, InitialRaidState, RaidDetail, InitialUIState, InitialFormState };

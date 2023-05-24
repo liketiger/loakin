@@ -2,20 +2,26 @@ import React from 'react'
 import styled, { css } from 'styled-components';
 import { CharacterDetail } from '../../types/fetch-types';
 import { modalActions } from '../../store/modal';
-import { useAppDispatch } from '../../utils/RTKhooks';
+import { useAppDispatch, useAppSelector } from '../../utils/RTKhooks';
 import CharacterText from '../common/CharacterText';
 import CrewCharacterWrapper from '../common/CrewCharacterWrapper';
 import Button from '../common/Button';
+import useDB from '../../hooks/useDB';
 
 type RaidCrewInfoPropsType = {
   character: CharacterDetail
 };
 
 const RaidCrewInfo = (props: RaidCrewInfoPropsType) => {
-  const { CharacterLevel, CharacterName, ItemAvgLevel, CharacterClassName, ServerName } = props.character;
+  const { CharacterLevel, CharacterName, ItemAvgLevel, CharacterClassName, ServerName, _id } = props.character;
   const dispatch = useAppDispatch();
+  const { deleteCrew } = useDB();
+  const scheduleId = useAppSelector(state => state.raid.scheduleId);
+  const raidId = useAppSelector(state => state.raid.raidId);
 
   const OpenModalHandler = () => dispatch(modalActions.toggleModal());
+
+  const deleteHandler = () => deleteCrew(scheduleId, raidId, _id!);
 
   return <NewCrewCharacterWrapper>
     <NewCharacterText type='level' onClick={OpenModalHandler}>{CharacterLevel}</NewCharacterText>
@@ -23,7 +29,7 @@ const RaidCrewInfo = (props: RaidCrewInfoPropsType) => {
     <NewCharacterText type='item'>{ItemAvgLevel}</NewCharacterText>
     <NewCharacterText type='class'>{CharacterClassName}</NewCharacterText>
     <NewCharacterText type='server'>{ServerName}</NewCharacterText>
-    <CrewCharacterDeleteBtn>삭제</CrewCharacterDeleteBtn>
+    <CrewCharacterDeleteBtn onClick={deleteHandler}>삭제</CrewCharacterDeleteBtn>
   </NewCrewCharacterWrapper>
 };
 
