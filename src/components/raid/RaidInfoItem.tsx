@@ -8,6 +8,7 @@ import { raidActions } from '../../store/raid';
 import { UIActions } from '../../store/ui';
 import { raidLevelTable } from '../../store/data';
 import useDB from '../../hooks/useDB';
+import { formActions } from '../../store/form';
 
 type RaidInfoItemProps = {
   item: RaidDetail;
@@ -22,7 +23,7 @@ const RaidInfoItem = ({ item, scheduleId }: RaidInfoItemProps) => {
   const { deleteRaid } = useDB();
 
   const raidHandler = () => {
-    dispatch(raidActions.setCurrentRaidId(_id!));
+    dispatch(raidActions.setCurrentRaidId(_id as string));
     dispatch(raidActions.setCurrentScheduleId(scheduleId as string));
     dispatch(raidActions.setCharacterList(characterList));
     dispatch(UIActions.setIsCreate(false));
@@ -34,6 +35,16 @@ const RaidInfoItem = ({ item, scheduleId }: RaidInfoItemProps) => {
     deleteRaid(scheduleId!, _id!);
   };
 
+  const updateHandler = (e: MouseEvent) => {
+    e.stopPropagation();
+    dispatch(formActions.setName(name));
+    dispatch(formActions.setLevel(level));
+    dispatch(formActions.setTime(time));
+    dispatch(raidActions.setCurrentRaidId(_id as string));
+    dispatch(UIActions.setIsCreate(true));
+    dispatch(UIActions.setIsModify(true));
+  };
+
   return (
     <RaidInfoWrapper onClick={raidHandler} id={_id as string} currentRaidId={currentRaidId}>
       <IconWrapper type='close' onClick={closeHandler}>
@@ -42,9 +53,9 @@ const RaidInfoItem = ({ item, scheduleId }: RaidInfoItemProps) => {
       <RaidText>{time}</RaidText>
       <RaidText>{newStr}</RaidText>
       <RaidText>{raidLevelTable[newStr as keyof typeof raidLevelTable]}</RaidText>
-      {/* <IconWrapper type='edit'>
+      <IconWrapper type='edit' onClick={updateHandler}>
         <RaidInfoEdit />
-      </IconWrapper> */}
+      </IconWrapper>
       <CoverUpBox className='cover-box' />
     </RaidInfoWrapper>
   );
@@ -75,12 +86,12 @@ const RaidText = styled.span`
   font-size: 20px;
 `;
 
-// const RaidInfoEdit = styled(FaEdit)`
-//   position: absolute;
-//   top: 50%;
-//   right: 5px;
-//   transform: translate3d(0, -55%, 0);
-// `;
+const RaidInfoEdit = styled(FaEdit)`
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translate3d(0, -55%, 0);
+`;
 
 const RaidInfoClose = styled(IoIosCloseCircleOutline)`
   position: absolute;

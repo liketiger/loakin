@@ -41,6 +41,18 @@ export type AddCrewPayloadTypes = {
   data: CharacterDetail,
   scheduleId: string,
   raidId: string
-}
+};
+
+export type UpdateRaidPayloadTypes = {
+  data: RaidDetail,
+  scheduleId: string,
+  raidId: string
+};
+
+export type RemoveCrewPayloadTypes = {
+  scheduleId: string,
+  raidId: string,
+  crewId: string
+};
 
 export { RequestData, CharacterDetail, CharacterInfo, MemberType, NewRaidPayloadTypes };

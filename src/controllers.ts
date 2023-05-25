@@ -5,14 +5,14 @@ const getSchedules = async (req: Request, res: Response) => {
   try {
     const schedules = await Schedule.find();
   
-    res.status(200).json({
+    return res.status(200).json({
       status: 'success',
       data: {
         schedules
       }
     });
   } catch (err) {
-    res.status(404).json({
+    return res.status(404).json({
       status: 'fail',
       message: err
     });
@@ -23,14 +23,14 @@ const addSchedule = async (req: Request, res: Response) => {
   try {
     const schedule = await Schedule.create(req.body);
   
-    res.status(201).json({
+    return res.status(201).json({
       status: 'success',
       data: {
         schedule
       }
     });
   } catch (err) {
-    res.status(400).json({
+    return res.status(400).json({
       status: 'fail',
       message: err
     });
@@ -45,34 +45,40 @@ const addRaid = async (req: Request, res: Response) => {
       }
     });
   
-    res.status(200).json({
+    return res.status(200).json({
       status: 'success',
       data: {
         schedule
       }
     });
   } catch (err) {
-    res.status(404).json({
+    return res.status(404).json({
       status: 'fail',
       message: err
     });
   }
 };
 
-const updateSchedule = async (req: Request, res: Response) => {
+const updateRaid = async (req: Request, res: Response) => {
   try {
-    const schedule = await Schedule.findByIdAndUpdate(req.params.id, req.body, {
-      new: true
-    });
-  
-    res.status(200).json({
+    const { id, raidId } = req.params;
+    const schedule = await Schedule.findById(id);
+
+    if (!schedule) res.status(404).json({ error: 'Schedule not found' });
+
+    const raidIndex = schedule!.raid.findIndex(raid => raid._id!.toString() === raidId);
+
+    if (raidIndex === -1) res.status(404).json({ error: 'Raid not found' });
+
+    schedule!.raid[raidIndex] = req.body;
+    await schedule!.save();
+
+    return res.status(200).json({
       status: 'success',
-      data: {
-        schedule
-      }
+      message: 'null'
     });
   } catch (err) {
-    res.status(404).json({
+    return res.status(404).json({
       status: 'fail',
       message: err
     });
@@ -93,12 +99,12 @@ const deleteSchedule = async (req: Request, res: Response) => {
     schedule!.raid.splice(raidIndex, 1);
     await schedule!.save();
 
-    res.status(200).json({
+    return res.status(200).json({
       status: 'success',
       message: 'null'
     });
   } catch (err) {
-    res.status(404).json({
+    return res.status(404).json({
       status: 'fail',
       message: err
     });
@@ -119,12 +125,12 @@ const addCrew = async (req: Request, res: Response) => {
     schedule!.raid[raidIndex].characterList.push(req.body);
     await schedule!.save();
 
-    res.status(200).json({
+    return res.status(200).json({
       status: 'success',
       message: 'null'
     });
   } catch (err) {
-    res.status(404).json({
+    return res.status(404).json({
       status: 'fail',
       message: err
     });
@@ -144,16 +150,16 @@ const deleteCrew = async (req: Request, res: Response) => {
     raid?.characterList.splice(crewIndex, 1);
     await schedule!.save();
 
-    res.status(200).json({
+    return res.status(200).json({
       status: 'success',
       message: 'null'
     });
   } catch (err) {
-    res.status(404).json({
+    return res.status(404).json({
       status: 'fail',
       message: err
     });
   }
 };
 
-export { getSchedules, addSchedule, addRaid, updateSchedule, deleteSchedule, addCrew, deleteCrew };
+export { getSchedules, addSchedule, addRaid, updateRaid, deleteSchedule, addCrew, deleteCrew };

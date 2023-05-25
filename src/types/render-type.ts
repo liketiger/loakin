@@ -30,7 +30,8 @@ type RaidType = {
 
 type UIType = {
   isCreate: boolean,
-  isRaidListSelected: boolean
+  isRaidListSelected: boolean,
+  isModify: boolean
 }
 
 type FormType = RaidDetail;

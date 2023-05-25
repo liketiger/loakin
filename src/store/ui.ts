@@ -13,6 +13,10 @@ const UISlice = createSlice({
     
     setIsRaidListSelected(state, action: PayloadAction<boolean>) {
       state.isRaidListSelected = action.payload;
+    },
+
+    setIsModify(state, action: PayloadAction<boolean>) {
+      state.isModify = action.payload;
     }
   }
 });

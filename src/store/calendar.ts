@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialCalendarState } from "./data";
 import { CalendarDetail, RaidDetail } from "../types/render-type";
-import { AddCrewPayloadTypes, CharacterDetail, NewRaidPayloadTypes, RemoveRaidPayloadTypes } from "../types/fetch-types";
+import { AddCrewPayloadTypes, CharacterDetail, NewRaidPayloadTypes, RemoveCrewPayloadTypes, RemoveRaidPayloadTypes, UpdateRaidPayloadTypes } from "../types/fetch-types";
 import Schedule from "../models";
 
 const initialState = initialCalendarState;
@@ -30,11 +30,26 @@ const calendarSlice = createSlice({
       raidArr.splice(raidIdx, 1);
     },
 
-    // addCrew(state, action: PayloadAction<AddCrewPayloadTypes>) {
-    //   const { data, scheduleId, raidId } = action.payload;
-    //   const raidList = state.schedules.find(schedule => schedule._id === scheduleId)!.raid
-    //   raidList.find(raid => raid._id === raidId)!.characterList.push(data);
-    // },
+    updateRaid(state, action: PayloadAction<UpdateRaidPayloadTypes>) {
+      const { data, scheduleId, raidId } = action.payload;
+      const raidArr = state.schedules.find(schedule => schedule._id === scheduleId)!.raid!;
+      const raidIdx = raidArr.findIndex(item => item._id === raidId);
+      raidArr[raidIdx] = data;
+    },
+    
+    addCrew(state, action: PayloadAction<AddCrewPayloadTypes>) {
+      const { data, scheduleId, raidId } = action.payload;
+      const raidArr = state.schedules.find(schedule => schedule._id === scheduleId)!.raid!;
+      const raid = raidArr.find(item => item._id === raidId);
+      raid?.characterList.push(data);
+    },
+    
+    removeCrew(state, action: PayloadAction<RemoveCrewPayloadTypes>) {
+      const { scheduleId, raidId, crewId } = action.payload;
+      const raidArr = state.schedules.find(schedule => schedule._id === scheduleId)!.raid!;
+      const raid = raidArr.find(item => item._id === raidId);
+      raid!.characterList = raid!.characterList.filter(character => character._id !== crewId);
+    },
   }
 });
 

@@ -27,6 +27,8 @@ const RaidCrewWrapper = styled.section`
   padding: 10px;
   margin-top: 10px;
   position: relative;
+  background-color: bisque;
+  border-radius: 5px;
 `;
 
 const EmptyCrew = styled(Empty)`

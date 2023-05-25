@@ -18,6 +18,10 @@ const formSlice = createSlice({
 
     setTime(state, action: PayloadAction<string>) {
       state.time = action.payload;
+    },
+
+    setCharacterList(state, action: PayloadAction<CharacterDetail[]>) {
+      state.characterList = action.payload;
     }
   }
 });

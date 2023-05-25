@@ -3,9 +3,11 @@ import { crewActions } from '../store/crew';
 import { CharacterDetail } from '../types/fetch-types';
 import { useAppDispatch, useAppSelector } from '../utils/RTKhooks';
 import requestHttp from '../utils/request-Http';
+import { useCache } from './useCache';
 
 const useCrew = () => {
   const dispatch = useAppDispatch();
+  const cache = useCache();
   const fetchCrewList = async (character: string) => {
     const res = await requestHttp({
       url: `https://developer-lostark.game.onstove.com/characters/${character}/siblings`,
@@ -20,20 +22,19 @@ const useCrew = () => {
   };
 
   const crewState = useAppSelector((state) => state.crew);
-
-  const fetchCrew = () => {
-    Promise.all(crewState.main.map((item) => fetchCrewList(item))).then((data) => {
-      data.forEach((characters) => {
-        characters.forEach((character: CharacterDetail) => {
-          character.ItemAvgLevel = Math.trunc(+(character.ItemAvgLevel as string).replace(',', ''));
-        });
-        characters.sort((a: CharacterDetail, b: CharacterDetail) => (b.ItemAvgLevel as number) - (a.ItemAvgLevel as number));
+  const fetchCrew = async () => {
+    const res = await Promise.all(crewState.main.map((item) => fetchCrewList(item)));
+    res.forEach(characters => {
+      characters.forEach((character: CharacterDetail) => {
+        character.ItemAvgLevel = Math.trunc(+(character.ItemAvgLevel as string).replace(',', ''));
       });
-      dispatch(crewActions.fetchCrew(data));
+      characters.sort((a: CharacterDetail, b: CharacterDetail) => (b.ItemAvgLevel as number) - (a.ItemAvgLevel as number));
     });
+    dispatch(crewActions.fetchCrew(res));
+    return res;
   };
 
-  return fetchCrew;
+  return cache.bind(null, fetchCrew);
 };
 
 export default useCrew;

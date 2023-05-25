@@ -27,6 +27,10 @@ const SelectBox = (props: SelectBoxType) => {
   const [btnTxt, setBtnTxt] = useState(text);
   const dispatch = useAppDispatch();
   const raidName = useAppSelector(state => state.form.name);
+  const raidLevel = useAppSelector(state => state.form.level);
+  const raidTime = useAppSelector(state => state.form.time);
+  const isModify = useAppSelector(state => state.ui.isModify);
+  const raidList = useAppSelector(state => state.raid.characterList);
   let dropdownList: string[] = [];
   if (text === '레이드') dropdownList = raidNameList;
   if (text === '난이도') {
@@ -46,7 +50,13 @@ const SelectBox = (props: SelectBoxType) => {
   useEffect(() => {
     document.addEventListener('click', closeDropdownHandler);
     setBtnTxt(text);
-  }, [text]);
+    if (isModify) {
+      if (text === '레이드') setBtnTxt(raidName);
+      if (text === '난이도') setBtnTxt(raidLevel);
+      if (text === '시간') setBtnTxt(raidTime);
+      dispatch(formActions.setCharacterList(raidList));
+    }
+  }, [text, isModify]);
   
   const dropHandler = () => setIsDropped(prev => !prev);
 

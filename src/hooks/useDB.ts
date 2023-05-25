@@ -34,18 +34,18 @@ const useDB = () => {
     dispatch(calendarActions.addRaid({ newRaid: data, id }));
   };
 
-  // const updateRaid = async (data: CalendarDetail, id: string) => {
-  //   await requestHttp({
-  //     url: `http://localhost:5000/schedule/${id}`,
-  //     method: 'PATCH',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(data)
-  //   });
+  const updateRaid = async (data: RaidDetail, scheduleId: string, raidId: string) => {
+    await requestHttp({
+      url: `http://localhost:5000/schedule/${scheduleId}/${raidId}`,
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
 
-  //   dispatch(calendarActions.addCalendar(data));
-  // };
+    dispatch(calendarActions.updateRaid({ data, scheduleId, raidId }));
+  };
 
   const deleteRaid = async (scheduleId: string, raidId: string) => {
     await requestHttp({
@@ -67,6 +67,7 @@ const useDB = () => {
     });
 
     dispatch(raidActions.addCharacter(data));
+    dispatch(calendarActions.addCrew({ data, scheduleId, raidId }));
   };
 
   const deleteCrew = async (scheduleId: string, raidId: string, crewId: string) => {
@@ -76,12 +77,14 @@ const useDB = () => {
     });
 
     dispatch(raidActions.removeCharacter(crewId));
+    dispatch(calendarActions.removeCrew({ scheduleId, raidId, crewId }));
   };
 
   return {
     addSchedule,
     addRaid,
     deleteRaid,
+    updateRaid,
     addCrew,
     deleteCrew
   }

@@ -23,7 +23,8 @@ export const initialRaidState: InitialRaidState = {
 
 export const initialUIState: InitialUIState = {
   isCreate: true,
-  isRaidListSelected: false
+  isRaidListSelected: false,
+  isModify: false
 };
 
 export const mockSchedule: CalendarDetail = {
