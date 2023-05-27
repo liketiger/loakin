@@ -16,7 +16,7 @@ const useCalendar = () => {
   };
   const fetchCalendar = () => fetchCalendarList().then(data => {
     dispatch(calendarActions.setCalendar(data));
-    // console.log(data);
+    console.log(data);
   });
 
   return fetchCalendar;

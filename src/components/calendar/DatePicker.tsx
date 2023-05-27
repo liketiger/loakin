@@ -26,6 +26,7 @@ type EventsType = {
 const DatePicker = () => {
   const dispatch = useAppDispatch();
   const schedule = useAppSelector(state => state.calendar.schedules);
+  console.log(schedule);
   const events = schedule.map(item => {
     const save: EventsType[] = [];
     item.raid.forEach(el => save.push({

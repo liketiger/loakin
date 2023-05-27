@@ -18,12 +18,14 @@ type RaidInfoItemProps = {
 const RaidInfoItem = ({ item, scheduleId }: RaidInfoItemProps) => {
   const { name, level, time, characterList, _id } = item;
   const currentRaidId = useAppSelector(state => state.raid.raidId);
+  const isRaidSelected = useAppSelector(state => state.ui.isRaidListSelected);
   const newStr = `${name}(${level})`;
   const dispatch = useAppDispatch();
   const { deleteRaid } = useDB();
 
   const raidHandler = () => {
     dispatch(raidActions.setCurrentRaidId(_id as string));
+    console.log(_id);
     dispatch(raidActions.setCurrentScheduleId(scheduleId as string));
     dispatch(raidActions.setCharacterList(characterList));
     dispatch(UIActions.setIsCreate(false));
@@ -46,7 +48,7 @@ const RaidInfoItem = ({ item, scheduleId }: RaidInfoItemProps) => {
   };
 
   return (
-    <RaidInfoWrapper onClick={raidHandler} id={_id as string} currentRaidId={currentRaidId}>
+    <RaidInfoWrapper onClick={raidHandler} id={_id as string} currentRaidId={currentRaidId} isRaidSelected={isRaidSelected}>
       <IconWrapper type='close' onClick={closeHandler}>
         <RaidInfoClose />
       </IconWrapper>
@@ -62,10 +64,10 @@ const RaidInfoItem = ({ item, scheduleId }: RaidInfoItemProps) => {
 };
 
 
-const RaidInfoWrapper = styled.div<{ currentRaidId: string, id: string }>`
+const RaidInfoWrapper = styled.div<{ currentRaidId: string, id: string, isRaidSelected: boolean }>`
   margin: 0 auto;
   margin-bottom: 10px;
-  background-color: ${({ currentRaidId, id }) => currentRaidId === id ? 'grey' : '#ff8400'};
+  background-color: ${({ currentRaidId, id, isRaidSelected }) => currentRaidId === id && isRaidSelected ? 'grey' : '#ff8400'};
   width: 400px;
   height: 40px;
   border-radius: 5px;

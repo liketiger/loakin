@@ -8,6 +8,7 @@ import { CharacterDetail } from '../../types/fetch-types';
 import { formActions } from '../../store/form';
 import { UIActions } from '../../store/ui';
 import { raidActions } from '../../store/raid';
+import { useCalendar } from '../../hooks';
 
 type RaidFormPropType = {
   isCreate: boolean,
@@ -17,6 +18,7 @@ type RaidFormPropType = {
 const RaidFormType = (props: RaidFormPropType) => {
   const { isCreate, currentId } = props;
   const { addRaid, addCrew, updateRaid } = useDB();
+  const getCalendar = useCalendar();
   const dispatch = useAppDispatch();
   const [character, setCharacter] = useState<Partial<CharacterDetail>>({});
   const isModify = useAppSelector(state => state.ui.isModify);
@@ -28,6 +30,7 @@ const RaidFormType = (props: RaidFormPropType) => {
   };
   const raidDetail = useAppSelector(state => state.form);
   const currentRaidId = useAppSelector(state => state.raid.raidId);
+  console.log(currentRaidId);
   const [selectedName, setSelectedName] = useState('');
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
@@ -44,7 +47,10 @@ const RaidFormType = (props: RaidFormPropType) => {
     else if (isCreate
           && raidRef.current?.textContent !== '레이드' 
           && levelRef.current?.textContent !== '난이도' 
-          && timeRef.current?.textContent !== '시간') addRaid(raidDetail, currentId);
+          && timeRef.current?.textContent !== '시간') {
+            addRaid(raidDetail, currentId);
+            getCalendar();
+          }
     else if (characterRef.current?.textContent !== '캐릭터') addCrew(character as CharacterDetail, currentId, currentRaidId);
   };
 

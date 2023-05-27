@@ -32,7 +32,6 @@ const RaidDetail = () => {
 };
 
 const RaidDetailWrapper = styled.section`
-  background-color: beige;
   border-radius: 5px;
   height: 50vh;
 `;

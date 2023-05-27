@@ -21,7 +21,10 @@ type SelectBtnType = {
 const RaidForm = () => {
   const isCreate = useAppSelector(state => state.ui.isCreate);
   const dispatch = useAppDispatch();
-  const selectCreateHandler = () => dispatch(UIActions.setIsCreate(true));
+  const selectCreateHandler = () => {
+    dispatch(UIActions.setIsCreate(true));
+    dispatch(UIActions.setIsRaidListSelected(false));
+  }
   const selectAttendHandler = () => dispatch(UIActions.setIsCreate(false));
   let schedule = useAppSelector(state => state.calendar.schedules);
   let raidDate = useAppSelector(state => state.raid.date);
@@ -31,6 +34,7 @@ const RaidForm = () => {
   raidDate = raidDate || localStorage.getItem('raid-date') as string;
 
   const currentId = schedule.find(item => item.date === raidDate)?._id as string;
+  console.log(schedule.find(item => item.date === raidDate));
 
   const newSchedule = { ...mockSchedule, date: raidDate };
 

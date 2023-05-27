@@ -64,11 +64,11 @@ const updateRaid = async (req: Request, res: Response) => {
     const { id, raidId } = req.params;
     const schedule = await Schedule.findById(id);
 
-    if (!schedule) res.status(404).json({ error: 'Schedule not found' });
+    if (!schedule) return res.status(404).json({ error: 'Schedule not found' });
 
     const raidIndex = schedule!.raid.findIndex(raid => raid._id!.toString() === raidId);
 
-    if (raidIndex === -1) res.status(404).json({ error: 'Raid not found' });
+    if (raidIndex === -1) return res.status(404).json({ error: 'Raid not found' });
 
     schedule!.raid[raidIndex] = req.body;
     await schedule!.save();
@@ -90,11 +90,11 @@ const deleteSchedule = async (req: Request, res: Response) => {
     const { id, raidId } = req.params;
     const schedule = await Schedule.findById(id);
 
-    if (!schedule) res.status(404).json({ error: 'Schedule not found' });
+    if (!schedule) return res.status(404).json({ error: 'Schedule not found' });
 
     const raidIndex = schedule!.raid.findIndex(raid => raid._id!.toString() === raidId);
 
-    if (raidIndex === -1) res.status(404).json({ error: 'Raid not found' });
+    if (raidIndex === -1) return res.status(404).json({ error: 'Raid not found' });
 
     schedule!.raid.splice(raidIndex, 1);
     await schedule!.save();
@@ -116,11 +116,11 @@ const addCrew = async (req: Request, res: Response) => {
     const { id, raidId } = req.params;
     const schedule = await Schedule.findById(id);
 
-    if (!schedule) res.status(404).json({ error: 'Schedule not found' });
+    if (!schedule) return res.status(404).json({ error: 'Schedule not found' });
 
     const raidIndex = schedule!.raid.findIndex(raid => raid._id!.toString() === raidId);
 
-    if (raidIndex === -1) res.status(404).json({ error: 'Raid not found' });
+    if (raidIndex === -1) return res.status(404).json({ error: 'Raid not found' });
 
     schedule!.raid[raidIndex].characterList.push(req.body);
     await schedule!.save();
@@ -142,7 +142,7 @@ const deleteCrew = async (req: Request, res: Response) => {
     const { id, raidId, crewId } = req.params;
     const schedule = await Schedule.findById(id);
 
-    if (!schedule) res.status(404).json({ error: 'Schedule not found' });
+    if (!schedule) return res.status(404).json({ error: 'Schedule not found' });
 
     const raid = schedule!.raid.find(raid => raid._id!.toString() === raidId);
     const crewIndex = raid!.characterList.findIndex(character => character._id!.toString() === crewId);
