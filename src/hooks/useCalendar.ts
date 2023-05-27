@@ -11,7 +11,6 @@ const useCalendar = () => {
       method: 'GET',
       body: null
     });
-    console.log(res);
     return res.data.schedules;
   };
   const fetchCalendar = () => fetchCalendarList().then(data => {

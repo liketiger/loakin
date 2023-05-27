@@ -30,10 +30,9 @@ const RaidFormType = (props: RaidFormPropType) => {
   };
   const raidDetail = useAppSelector(state => state.form);
   const currentRaidId = useAppSelector(state => state.raid.raidId);
-  console.log(currentRaidId);
   const [selectedName, setSelectedName] = useState('');
 
-  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { raidRef, levelRef, timeRef, characterRef } = refs;
     if (isModify) {
@@ -48,8 +47,8 @@ const RaidFormType = (props: RaidFormPropType) => {
           && raidRef.current?.textContent !== '레이드' 
           && levelRef.current?.textContent !== '난이도' 
           && timeRef.current?.textContent !== '시간') {
-            addRaid(raidDetail, currentId);
-            getCalendar();
+            await addRaid(raidDetail, currentId);
+            await getCalendar();
           }
     else if (characterRef.current?.textContent !== '캐릭터') addCrew(character as CharacterDetail, currentId, currentRaidId);
   };

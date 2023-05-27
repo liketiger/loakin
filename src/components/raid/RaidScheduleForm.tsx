@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Button from '../common/Button';
 import { CalendarDetail } from '../../types/render-type';
 import useDB from '../../hooks/useDB';
+import { useCalendar } from '../../hooks';
 
 type RaidScheduleFormPropsType = {
   newSchedule: CalendarDetail;
@@ -11,9 +12,11 @@ type RaidScheduleFormPropsType = {
 const RaidScheduleForm = (props: RaidScheduleFormPropsType) => {
   const { addSchedule } = useDB();
   const { newSchedule } = props;
-  const addScheduleHandler = (e: FormEvent<HTMLFormElement>) => {
+  const getCalendar = useCalendar();
+  const addScheduleHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addSchedule(newSchedule);
+    await addSchedule(newSchedule);
+    await getCalendar();
   };
   return (
     <RaidForm onSubmit={addScheduleHandler}>

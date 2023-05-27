@@ -25,7 +25,6 @@ const RaidInfoItem = ({ item, scheduleId }: RaidInfoItemProps) => {
 
   const raidHandler = () => {
     dispatch(raidActions.setCurrentRaidId(_id as string));
-    console.log(_id);
     dispatch(raidActions.setCurrentScheduleId(scheduleId as string));
     dispatch(raidActions.setCharacterList(characterList));
     dispatch(UIActions.setIsCreate(false));

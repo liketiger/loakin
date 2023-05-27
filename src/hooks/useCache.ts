@@ -42,7 +42,7 @@ export const useCache = () => {
       }
       // Use the fetched resource  
     } catch (error) {
-      console.log('Error:', error);
+      alert(error);
     }
   };
 

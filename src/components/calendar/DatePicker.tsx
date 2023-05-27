@@ -26,17 +26,15 @@ type EventsType = {
 const DatePicker = () => {
   const dispatch = useAppDispatch();
   const schedule = useAppSelector(state => state.calendar.schedules);
-  console.log(schedule);
   const events = schedule.map(item => {
     const save: EventsType[] = [];
     item.raid.forEach(el => save.push({
         id: el._id,
         title: `${el.name}-${el.level}`,
-        start: `2023-05-24T09:00`
+        start: `${item.date}T${el.time}`
       }));
     return save;
   }).flat();
-  console.log(events);
   const navigate = useNavigate();
   const renderDayCellContent = (info: DayCellContentArg) => <div className="fc-day-number">{info.date.getDate()}</div>;
   

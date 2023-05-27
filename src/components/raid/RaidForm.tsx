@@ -27,6 +27,7 @@ const RaidForm = () => {
   }
   const selectAttendHandler = () => dispatch(UIActions.setIsCreate(false));
   let schedule = useAppSelector(state => state.calendar.schedules);
+  console.log(schedule);
   let raidDate = useAppSelector(state => state.raid.date);
   if (schedule.length !== 0) localStorage.setItem('schedule', JSON.stringify(schedule));
 
@@ -34,7 +35,6 @@ const RaidForm = () => {
   raidDate = raidDate || localStorage.getItem('raid-date') as string;
 
   const currentId = schedule.find(item => item.date === raidDate)?._id as string;
-  console.log(schedule.find(item => item.date === raidDate));
 
   const newSchedule = { ...mockSchedule, date: raidDate };
 
