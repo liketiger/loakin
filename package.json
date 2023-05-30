@@ -32,9 +32,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build:ts": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server/server.ts",
-    "dev": "concurrently \"npm run build:ts\" \"npm start\""
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
