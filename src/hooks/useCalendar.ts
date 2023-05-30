@@ -1,4 +1,4 @@
-import { LOCAL } from '../api-list';
+import '../utils/env';
 import { useAppDispatch } from '../utils/RTKhooks';
 import requestHttp from '../utils/request-Http';
 import { calendarActions } from '../store/calendar';
@@ -7,7 +7,7 @@ const useCalendar = () => {
   const dispatch = useAppDispatch();
   const fetchCalendarList = async () => {
     const res = await requestHttp({
-      url: `${LOCAL}/schedule`,
+      url: `${process.env.API_SERVER}/schedule`,
       method: 'GET',
       body: null
     });

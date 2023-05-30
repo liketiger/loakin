@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from 'react';
+import React, { MouseEvent } from 'react';
 import styled, { css } from 'styled-components';
 import { FaEdit } from "react-icons/fa";
 import { IoIosCloseCircleOutline } from "react-icons/io";

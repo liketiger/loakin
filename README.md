@@ -6,8 +6,8 @@
 - [x] implement modal toggle feature
 - [ ] link back-end CRUD api to front-end features
   - [x] implement create schedule feature
-  - [ ] implement update schedule feature
-  - [ ] implement delete schedule feature
+  - [x] implement update schedule feature
+  - [x] implement delete schedule feature
 
 ## UI Logic
 - [x] set routers
@@ -19,12 +19,12 @@
 - [x] make Calendar page
   - [x] change color when hovered on each date
   - [x] show raid brief detail (name, time)
-  - [ ] make Raid detail page
-    - [ ] show raid summarize
-    - [ ] make modal that pops when create btn was pressed
-    - [ ] add to summarize when created
-    - [ ] show crew list with characters attending to a raid when summarized raid is clicked
-    - [ ] navigate to character deatils of Crew page when each crew is clicked 
+  - [x] make Raid detail page
+    - [x] show raid summarize
+    - [x] make modal that pops when create btn was pressed
+    - [x] add to summarize when created
+    - [x] show crew list with characters attending to a raid when summarized raid is clicked
+    - [x] navigate to character deatils of Crew page when each crew is clicked 
 - [x] make Crew page
   - [x] show crew list and their characters
     - [ ] show detail info about selected character with modal
@@ -36,7 +36,4 @@
 
 ## ETC
 - [x] set Backend with node.js and mongoDB
-- [ ] deploy website
-
-// select box 추출
-// 레이드 두번 생성됨
+- [x] deploy website

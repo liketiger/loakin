@@ -1,8 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { initialCalendarState } from "./data";
-import { CalendarDetail, RaidDetail } from "../types/render-type";
-import { AddCrewPayloadTypes, CharacterDetail, NewRaidPayloadTypes, RemoveCrewPayloadTypes, RemoveRaidPayloadTypes, UpdateRaidPayloadTypes } from "../types/fetch-types";
-import Schedule from "../models";
+import { CalendarDetail } from "../types/render-type";
+import { AddCrewPayloadTypes, NewRaidPayloadTypes, RemoveCrewPayloadTypes, RemoveRaidPayloadTypes, UpdateRaidPayloadTypes } from "../types/fetch-types";
 
 const initialState = initialCalendarState;
 

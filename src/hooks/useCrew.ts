@@ -1,4 +1,4 @@
-import { LOA_API_KEY } from '../api-list';
+import '../utils/env'
 import { crewActions } from '../store/crew';
 import { CharacterDetail } from '../types/fetch-types';
 import { useAppDispatch, useAppSelector } from '../utils/RTKhooks';
@@ -14,7 +14,7 @@ const useCrew = () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `bearer ${LOA_API_KEY}`
+        Authorization: `bearer ${process.env.LOA_API_KEY}`
       },
       body: null
     });
