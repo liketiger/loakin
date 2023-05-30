@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/common/Header';
 import GlobalStyle from './style/global-style';
 import Calendar from './pages/Calendar';
 import Crew from './pages/Crew';
@@ -9,6 +8,7 @@ import Modal from './components/common/Modal';
 import { useAppSelector } from './utils/RTKhooks';
 import useCrew from './hooks/useCrew';
 import useCalendar from './hooks/useCalendar';
+import Header from './components/common/Header';
 
 const App = () => {
   const modalState = useAppSelector((state) => state.modal.isOpen);
