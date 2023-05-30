@@ -6,12 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../utils/RTKhooks';
 import { mockSchedule } from '../../store/data';
 import RaidScheduleForm from './RaidScheduleForm';
 import { UIActions } from '../../store/ui';
-
-type SelectBtnType = {
-  isCreate: boolean;
-  btnType: string;
-  isRaid?: boolean;
-};
+import { SelectBtnType } from '../../types/raid';
 
 const RaidForm = () => {
   const isCreate = useAppSelector(state => state.ui.isCreate);

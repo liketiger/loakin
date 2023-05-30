@@ -1,9 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-
-type InputType = {
-  type: string,
-};
+import { InputType } from '../../types/common';
 
 const Input = (props: InputType) => {
   return (

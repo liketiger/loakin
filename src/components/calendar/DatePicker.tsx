@@ -1,27 +1,13 @@
 import React from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { EventClickArg } from '@fullcalendar/core';
-import interactionPlugin from '@fullcalendar/interaction';
+import { DayCellContentArg, EventClickArg } from '@fullcalendar/core';
+import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../utils/RTKhooks';
 import { raidActions } from '../../store/raid';
 import { UIActions } from '../../store/ui';
-
-type DayCellContentArg = {
-  date: Date
-};
-
-type DateClickArg = {
-  date: Date,
-  dateStr: string,
-}
-
-type EventsType = {
-  id: string | undefined,
-  title: string,
-  start: string
-};
+import { EventsType } from '../../types/calendar';
 
 const DatePicker = () => {
   const dispatch = useAppDispatch();

@@ -2,18 +2,13 @@ import React, { MouseEvent } from 'react';
 import styled, { css } from 'styled-components';
 import { FaEdit } from "react-icons/fa";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { RaidDetail } from '../../types/render-type';
 import { useAppDispatch, useAppSelector } from '../../utils/RTKhooks';
 import { raidActions } from '../../store/raid';
 import { UIActions } from '../../store/ui';
 import { raidLevelTable } from '../../store/data';
 import useDB from '../../hooks/useDB';
 import { formActions } from '../../store/form';
-
-type RaidInfoItemProps = {
-  item: RaidDetail;
-  scheduleId: string | undefined;
-};
+import { RaidInfoItemProps } from '../../types/raid';
 
 const RaidInfoItem = ({ item, scheduleId }: RaidInfoItemProps) => {
   const { name, level, time, characterList, _id } = item;
@@ -34,6 +29,7 @@ const RaidInfoItem = ({ item, scheduleId }: RaidInfoItemProps) => {
   const closeHandler = (e: MouseEvent) => {
     e.stopPropagation();
     deleteRaid(scheduleId!, _id!);
+    dispatch(raidActions.setCharacterList([]));
   };
 
   const updateHandler = (e: MouseEvent) => {

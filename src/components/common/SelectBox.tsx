@@ -5,19 +5,7 @@ import Button from './Button';
 import { useAppDispatch, useAppSelector } from '../../utils/RTKhooks';
 import { formActions } from '../../store/form';
 import { initialCrewState, raidLevelList, raidLevelList2, raidNameList, raidTimeList } from '../../store/data';
-import { CharacterDetail } from '../../types/fetch-types';
-
-type SelectBoxType = {
-  text: string,
-  selectedName?: string,
-  setSelectedName?: Dispatch<SetStateAction<string>>,
-  buttonRef?: RefObject<HTMLButtonElement>,
-  setCharacter?: Dispatch<SetStateAction<Partial<CharacterDetail>>>
-};
-
-type OptionListType = {
-  isDropped: boolean,
-};
+import { OptionListType, SelectBoxType } from '../../types/common';
 
 const SelectBox = (props: SelectBoxType) => {
   const { text, selectedName, setSelectedName, buttonRef, setCharacter } = props;
@@ -78,11 +66,6 @@ const SelectBox = (props: SelectBoxType) => {
       <SelectLabel className='selectBtn' onClick={dropHandler} type="button" buttonRef={buttonRef!}>{btnTxt}</SelectLabel>
       <OptionList isDropped={isDropped}>
         {dropdownList.map((item, index) => <OptionItem key={index} onClick={listClickHandler}>{item}</OptionItem>)}
-        {/* <OptionItem onClick={listClickHandler}>이호</OptionItem>
-        <OptionItem>황성재</OptionItem>
-        <OptionItem>이름이너무길어서어허</OptionItem>
-        <OptionItem>이름이너무길어서어허</OptionItem>
-        <OptionItem>이름이너무길어서어허</OptionItem> */}
       </OptionList>
       <ArrowIcon />
     </SelectBoxUI>

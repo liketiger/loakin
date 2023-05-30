@@ -10,7 +10,7 @@ const useDB = () => {
 
   const addSchedule = async (data: CalendarDetail) => {
     await requestHttp({
-      url: 'http://localhost:5000/schedule',
+      url: `${process.env.REACT_APP_API_SERVER}/schedule`,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ const useDB = () => {
 
   const addRaid = async (data: RaidDetail, id: string) => {
     await requestHttp({
-      url: `http://localhost:5000/schedule/${id}`,
+      url: `${process.env.REACT_APP_API_SERVER}/schedule/${id}`,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ const useDB = () => {
 
   const updateRaid = async (data: RaidDetail, scheduleId: string, raidId: string) => {
     await requestHttp({
-      url: `http://localhost:5000/schedule/${scheduleId}/${raidId}`,
+      url: `${process.env.REACT_APP_API_SERVER}/schedule/${scheduleId}/${raidId}`,
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ const useDB = () => {
 
   const deleteRaid = async (scheduleId: string, raidId: string) => {
     await requestHttp({
-      url: `http://localhost:5000/schedule/${scheduleId}/${raidId}`,
+      url: `${process.env.REACT_APP_API_SERVER}/schedule/${scheduleId}/${raidId}`,
       method: 'DELETE',
     });
 
@@ -58,7 +58,7 @@ const useDB = () => {
 
   const addCrew = async (data: CharacterDetail, scheduleId: string, raidId: string) => {
     await requestHttp({
-      url: `http://localhost:5000/schedule/${scheduleId}/${raidId}`,
+      url: `${process.env.REACT_APP_API_SERVER}/schedule/${scheduleId}/${raidId}`,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ const useDB = () => {
 
   const deleteCrew = async (scheduleId: string, raidId: string, crewId: string) => {
     await requestHttp({
-      url: `http://localhost:5000/schedule/${scheduleId}/${raidId}/${crewId}`,
+      url: `${process.env.REACT_APP_API_SERVER}/schedule/${scheduleId}/${raidId}/${crewId}`,
       method: 'DELETE',
     });
 

@@ -1,11 +1,6 @@
 import React from "react";
-import { RaidDetail } from "../../types/render-type";
 import RaidInfoItem from "./RaidInfoItem";
-
-type RaidInfoProp = {
-  raid: RaidDetail[];
-  scheduleId: string | undefined;
-};
+import { RaidInfoProp } from "../../types/raid";
 
 const RaidInfoList = (props: RaidInfoProp) => {
   const { raid, scheduleId } = props;

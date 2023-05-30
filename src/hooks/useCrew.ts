@@ -1,4 +1,3 @@
-import '../utils/env'
 import { crewActions } from '../store/crew';
 import { CharacterDetail } from '../types/fetch-types';
 import { useAppDispatch, useAppSelector } from '../utils/RTKhooks';
@@ -10,11 +9,11 @@ const useCrew = () => {
   const cache = useCache();
   const fetchCrewList = async (character: string) => {
     const res = await requestHttp({
-      url: `https://developer-lostark.game.onstove.com/characters/${character}/siblings`,
+      url: `${process.env.REACT_APP_LOA_API}/characters/${character}/siblings`,
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `bearer ${process.env.LOA_API_KEY}`
+        Authorization: `bearer ${process.env.REACT_APP_LOA_API_KEY}`
       },
       body: null
     });
@@ -30,8 +29,9 @@ const useCrew = () => {
       });
       characters.sort((a: CharacterDetail, b: CharacterDetail) => (b.ItemAvgLevel as number) - (a.ItemAvgLevel as number));
     });
-    dispatch(crewActions.fetchCrew(res));
-    return res;
+    const filteredList = res.map(characters => characters.filter((character: CharacterDetail) => character.CharacterLevel !== 1));
+    dispatch(crewActions.fetchCrew(filteredList));
+    return filteredList;
   };
 
   return cache.bind(null, fetchCrew);

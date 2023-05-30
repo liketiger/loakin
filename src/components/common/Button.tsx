@@ -1,12 +1,6 @@
 import React, { RefObject } from 'react'
 import styled from "styled-components";
-
-type ButtonProps = {
-  children: string,
-  onClick?: () => void,
-  type?: 'submit' | 'reset' | 'button' | undefined;
-  buttonRef?: RefObject<HTMLButtonElement>
-};
+import { ButtonProps } from '../../types/common';
 
 const Button = ({buttonRef, children, ...props}: ButtonProps) => {
   return (

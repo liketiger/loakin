@@ -1,13 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CharacterDetail } from '../../types/fetch-types';
 import CrewCharacterDetail from './CrewCharacterDetail';
 import CrewCharacterWrapper from '../common/CrewCharacterWrapper';
-
-type CrewItemTypes = {
-  name: string,
-  characterList: CharacterDetail[],
-};
+import { CrewItemTypes } from '../../types/crew';
 
 const CrewItem = (props: CrewItemTypes) => {
   const { name, characterList } = props;
@@ -38,19 +33,6 @@ const CrewName = styled.div`
   background: linear-gradient(90deg, #fcff9e 0%, #c67700 100%);
   font-weight: bold;
   color: #484848;
-`;
-
-const CrewCharacter = styled.div`
-  border-radius: 0 0 10px 10px;
-  padding: 10px;
-  flex-grow: 1;
-  display: grid;
-  grid-template-columns: repeat(5, auto);
-  grid-template-rows: repeat(auto-fill, 35px);
-  justify-items: start;
-  align-items: center;
-  align-content: center;
-  position: relative;
 `;
 
 export default CrewItem;

@@ -1,12 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components';
-
-type TextPropType = {
-  type: string,
-  index?: number,
-  children: string | number,
-  onClick?: () => void
-};
+import { TextPropType } from '../../types/common';
 
 const CharacterText = (props: TextPropType) => {
   return (

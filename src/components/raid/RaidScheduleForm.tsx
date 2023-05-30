@@ -1,13 +1,9 @@
 import React, { FormEvent } from 'react'
 import styled from 'styled-components';
 import Button from '../common/Button';
-import { CalendarDetail } from '../../types/render-type';
 import useDB from '../../hooks/useDB';
-import { useCalendar } from '../../hooks';
-
-type RaidScheduleFormPropsType = {
-  newSchedule: CalendarDetail;
-}
+import { RaidScheduleFormPropsType } from '../../types/raid';
+import useCalendar from '../../hooks/useCalendar';
 
 const RaidScheduleForm = (props: RaidScheduleFormPropsType) => {
   const { addSchedule } = useDB();

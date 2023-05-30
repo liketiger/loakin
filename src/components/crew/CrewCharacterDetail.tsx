@@ -1,13 +1,8 @@
 import React from 'react'
-import { CharacterDetail } from '../../types/fetch-types';
 import { useAppDispatch } from '../../utils/RTKhooks';
 import { modalActions } from '../../store/modal';
 import CharacterText from '../common/CharacterText';
-
-type CrewCharacterDetailProps = {
-  info: CharacterDetail,
-  index: number
-};
+import { CrewCharacterDetailProps } from '../../types/crew';
 
 const CrewCharacterDetail = (props: CrewCharacterDetailProps) => {
   const { ServerName, CharacterName, CharacterLevel, CharacterClassName, ItemAvgLevel } = props.info;

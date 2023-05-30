@@ -1,9 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-
-type CrewCharacterWrapperPropsType = {
-  children: JSX.Element | JSX.Element[];
-}
+import { CrewCharacterWrapperPropsType } from '../../types/common';
 
 const CrewCharacterWrapper = (props: CrewCharacterWrapperPropsType) => {
   return (

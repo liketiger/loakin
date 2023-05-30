@@ -1,16 +1,12 @@
 import React from 'react'
 import styled, { css } from 'styled-components';
-import { CharacterDetail } from '../../types/fetch-types';
 import { modalActions } from '../../store/modal';
 import { useAppDispatch, useAppSelector } from '../../utils/RTKhooks';
 import CharacterText from '../common/CharacterText';
 import CrewCharacterWrapper from '../common/CrewCharacterWrapper';
 import Button from '../common/Button';
 import useDB from '../../hooks/useDB';
-
-type RaidCrewInfoPropsType = {
-  character: CharacterDetail
-};
+import { RaidCrewInfoPropsType } from '../../types/raid';
 
 const RaidCrewInfo = (props: RaidCrewInfoPropsType) => {
   const { CharacterLevel, CharacterName, ItemAvgLevel, CharacterClassName, ServerName, _id } = props.character;

@@ -5,9 +5,10 @@ import GlobalStyle from './style/global-style';
 import Calendar from './pages/Calendar';
 import Crew from './pages/Crew';
 import Raid from './pages/Raid';
-import { useCrew, useCalendar } from './hooks';
 import Modal from './components/common/Modal';
 import { useAppSelector } from './utils/RTKhooks';
+import useCrew from './hooks/useCrew';
+import useCalendar from './hooks/useCalendar';
 
 const App = () => {
   const modalState = useAppSelector((state) => state.modal.isOpen);

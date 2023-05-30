@@ -12,7 +12,7 @@ const Calendar = () => {
 
 const DatePickerWrapper = styled.section`
   padding: 10px;
-  max-width: 1024px;
+  max-width: 1200px;
   margin: 0 auto;
   &::-webkit-scrollbar {
     display: none;

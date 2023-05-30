@@ -8,12 +8,8 @@ import { CharacterDetail } from '../../types/fetch-types';
 import { formActions } from '../../store/form';
 import { UIActions } from '../../store/ui';
 import { raidActions } from '../../store/raid';
-import { useCalendar } from '../../hooks';
-
-type RaidFormPropType = {
-  isCreate: boolean,
-  currentId: string
-};
+import { RaidFormPropType } from '../../types/raid';
+import useCalendar from '../../hooks/useCalendar';
 
 const RaidFormType = (props: RaidFormPropType) => {
   const { isCreate, currentId } = props;
