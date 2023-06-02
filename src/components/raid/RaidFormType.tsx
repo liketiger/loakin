@@ -46,7 +46,10 @@ const RaidFormType = (props: RaidFormPropType) => {
             await addRaid(raidDetail, currentId);
             await getCalendar();
           }
-    else if (characterRef.current?.textContent !== '캐릭터') addCrew(character as CharacterDetail, currentId, currentRaidId);
+    else if (characterRef.current?.textContent !== '캐릭터') {
+      addCrew(character as CharacterDetail, currentId, currentRaidId);
+      if (characterRef.current) characterRef.current.textContent = '캐릭터';
+    }
   };
 
   const cancelHandler = () => {

@@ -7,17 +7,22 @@ import CrewCharacterWrapper from '../common/CrewCharacterWrapper';
 import Button from '../common/Button';
 import useDB from '../../hooks/useDB';
 import { RaidCrewInfoPropsType } from '../../types/raid';
+import useCalendar from '../../hooks/useCalendar';
 
 const RaidCrewInfo = (props: RaidCrewInfoPropsType) => {
   const { CharacterLevel, CharacterName, ItemAvgLevel, CharacterClassName, ServerName, _id } = props.character;
   const dispatch = useAppDispatch();
+  const getCalendar = useCalendar();
   const { deleteCrew } = useDB();
   const scheduleId = useAppSelector(state => state.raid.scheduleId);
   const raidId = useAppSelector(state => state.raid.raidId);
 
   const OpenModalHandler = () => dispatch(modalActions.toggleModal());
 
-  const deleteHandler = () => deleteCrew(scheduleId, raidId, _id!);
+  const deleteHandler = async () => {
+    await deleteCrew(scheduleId, raidId, _id!);
+    await getCalendar();
+  };
 
   return <NewCrewCharacterWrapper>
     <NewCharacterText type='level' onClick={OpenModalHandler}>{CharacterLevel}</NewCharacterText>
