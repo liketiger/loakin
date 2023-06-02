@@ -127,7 +127,7 @@ https://loakin-igkctklu7-liketiger.vercel.app/
 
 # 데모 영상
 
-<video src=https://github.com/liketiger/loakin/assets/50165633/dd3ed92e-1933-45e8-ad1e-64fe9babdcd0 />
+![](https://github.com/liketiger/loakin/assets/50165633/62baee03-a0d8-40ff-becb-4f49e9934158)
 
 <br>
 
