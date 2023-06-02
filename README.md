@@ -184,7 +184,7 @@ https://loakin-igkctklu7-liketiger.vercel.app/
     - useRef: useRef를 일반 변수 처럼 활용하여 캐시될 데이터를 저장하는 것이다.
     - useState: useState로 캐시 데이터를 관리하는데 캐시데이터가 변할 때 리렌더링이 필요치는 않아서 useRef가 더 나아보인다.
     - JSObject: 일반 객체 리터럴에 캐시 데이터를 저장하는 것이다. 다른 모듈로 만들어 import해서 사용하는 방식을 취해야해서 useRef가 나아보인다.
-- 브라우저 새로고침 및 재실행시에도 캐시 데이터가 유지되어야 하므로 WebStorage의 CacheStorage 사용.
+- 브라우저 새로고침 및 재실행시에도 캐시 데이터가 유지되어야 하므로 CacheStorage 사용.
 
 💡 상태 관리
 - useState로 props-drilling하여 관리하면 추후 유지보수 하기 힘든 면이 있어 2개 이상 drilling시 최대한 전역 상태를 통하는 방식으로 설계
