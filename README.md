@@ -30,7 +30,7 @@
 
 # 배포 사이트 주소
 
-https://loakin-igkctklu7-liketiger.vercel.app/
+https://loakin.vercel.app/
 
 <br>
 
