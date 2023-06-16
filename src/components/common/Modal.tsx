@@ -10,7 +10,7 @@ const Modal = () => {
 
   return <DimmedLayer onClick={closeModalHandler}>
     <ModalContent onClickCapture={(e: React.MouseEvent<HTMLElement>) => e.stopPropagation()}>
-      준비중...
+      미구현 서비스입니다.
     </ModalContent>
   </DimmedLayer>
 };
