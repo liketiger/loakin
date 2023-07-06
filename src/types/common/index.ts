@@ -27,7 +27,7 @@ export type SelectBoxType = {
   text: string,
   selectedName?: string,
   setSelectedName?: Dispatch<SetStateAction<string>>,
-  buttonRef?: RefObject<HTMLButtonElement>,
+  buttonRef?: RefObject<HTMLSelectElement>,
   setCharacter?: Dispatch<SetStateAction<Partial<CharacterDetail>>>
 };
 

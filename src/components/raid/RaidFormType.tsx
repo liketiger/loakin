@@ -19,10 +19,10 @@ const RaidFormType = (props: RaidFormPropType) => {
   const [character, setCharacter] = useState<Partial<CharacterDetail>>({});
   const isModify = useAppSelector(state => state.ui.isModify);
   const refs = {
-    raidRef: useRef<HTMLButtonElement>(null),
-    levelRef: useRef<HTMLButtonElement>(null),
-    timeRef: useRef<HTMLButtonElement>(null),
-    characterRef: useRef<HTMLButtonElement>(null),
+    raidRef: useRef<HTMLSelectElement>(null),
+    levelRef: useRef<HTMLSelectElement>(null),
+    timeRef: useRef<HTMLSelectElement>(null),
+    characterRef: useRef<HTMLSelectElement>(null),
   };
   const raidDetail = useAppSelector(state => state.form);
   const currentRaidId = useAppSelector(state => state.raid.raidId);
@@ -40,15 +40,15 @@ const RaidFormType = (props: RaidFormPropType) => {
       dispatch(raidActions.setCurrentRaidId(''));
     }
     else if (isCreate
-          && raidRef.current?.textContent !== '레이드' 
-          && levelRef.current?.textContent !== '난이도' 
-          && timeRef.current?.textContent !== '시간') {
+          && raidRef.current?.value !== '레이드' 
+          && levelRef.current?.value !== '난이도' 
+          && timeRef.current?.value !== '시간') {
             await addRaid(raidDetail, currentId);
             await getCalendar();
           }
-    else if (characterRef.current?.textContent !== '캐릭터') {
+    else if (characterRef.current?.value !== '캐릭터') {
       addCrew(character as CharacterDetail, currentId, currentRaidId);
-      if (characterRef.current) characterRef.current.textContent = '캐릭터';
+      if (characterRef.current) characterRef.current.value = '캐릭터';
     }
   };
 

@@ -9,6 +9,7 @@ export type SelectBtnType = {
   isCreate: boolean;
   btnType: string;
   isRaid?: boolean;
+  raidTheme: (props: SelectBtnType) => string;
 };
 
 export type RaidFormPropType = {

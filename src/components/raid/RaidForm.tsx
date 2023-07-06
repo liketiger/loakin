@@ -44,11 +44,11 @@ const RaidForm = () => {
     <RaidFormWrapper>
       {!currentSchedule && <RaidScheduleForm newSchedule={newSchedule} />}
       <BtnWrapper>
-        <RaidFormSelectBtn theme={themeHandler} onClick={selectCreateHandler} isRaid={isRaidList} isCreate={isCreate} btnType="create">
+        <RaidFormSelectBtn raidTheme={themeHandler} onClick={selectCreateHandler} isRaid={isRaidList} isCreate={isCreate} btnType="create">
           레이드 생성
         </RaidFormSelectBtn>
         {isRaidList
-        && <RaidFormSelectBtn theme={themeHandler} onClick={selectAttendHandler} isRaid={isRaidList} isCreate={isCreate} btnType="attend">
+        && <RaidFormSelectBtn raidTheme={themeHandler} onClick={selectAttendHandler} isRaid={isRaidList} isCreate={isCreate} btnType="attend">
           레이드 참가
         </RaidFormSelectBtn>}
       </BtnWrapper>
@@ -70,7 +70,7 @@ const BtnWrapper = styled.div``;
 const RaidFormSelectBtn = styled(Button)<SelectBtnType>`
   width: ${({ isRaid }) => isRaid ? '50%' : '100%'};
   height: 50px;
-  background-color: ${(props) => props.theme(props)};
+  background-color: ${(props) => props.raidTheme(props)};
   ${({ isRaid }) => isRaid && css`
     &:hover {
       cursor: pointer;
